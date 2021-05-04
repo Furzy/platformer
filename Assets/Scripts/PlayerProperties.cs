@@ -79,7 +79,7 @@ public class PlayerProperties : MonoBehaviour
         {
             rb.gravityScale = fallMultiplier;
         } 
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) 
+        else if (rb.velocity.y > 0 && direction.y == 0) 
         {
             rb.gravityScale = lowJumpMultiplier;
         } else {

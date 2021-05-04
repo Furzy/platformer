@@ -23,28 +23,23 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Jump();
+        NJump();
     }
 
     private void DetectJump()
     {
         //for neutral jump
-        if (pp.isGrounded && pp.direction.y == 1 && pp.direction.x == 0)
+        if (pp.isGrounded && pp.direction.y == 1)
         {
             wantJump = true;
-            pp.isNJumping = true;
-
-            pp.isWalking = false;
-            pp.isRunning = false;
-            pp.isCrouching = false;
         }
     }
 
-    private void Jump()
+    private void NJump()
     {
         if (wantJump) 
         {
-            pp.rb.AddForce(Vector2.up * pp.jumpForce, ForceMode2D.Impulse);
+            pp.rb.velocity = new Vector2(pp.rb.velocity.y, pp.jumpForce);
             wantJump = false;
         }
     }

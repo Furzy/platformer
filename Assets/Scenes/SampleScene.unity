@@ -268,16 +268,16 @@ MonoBehaviour:
   runningMoveSpeed: 5
   isCrouching: 0
   isNJumping: 0
-  jumpForce: 12
+  jumpForce: 4
   isGrounded: 0
   groundCheckPoint: {fileID: 1877883963}
   groundCheckSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  fallMultiplier: 6
+  fallMultiplier: 8
   lowJumpMultiplier: 4
-  groundedMultiplier: 8
+  groundedMultiplier: 1
   direction: {x: 0, y: 0}
   rb: {fileID: 0}
   sp: {fileID: 0}
