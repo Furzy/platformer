@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6a6c4e7410d4a9eb5bab74f10c1a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: 0
   facingRight: 1
   isWalking: 0
   groundedMoveSpeed: 3
@@ -265,7 +266,6 @@ MonoBehaviour:
   doubleTapSpeed: 0.3
   runningMoveSpeed: 5
   airMoveSpeed: 22
-  isTurning: 0
   isCrouching: 0
   isGrounded: 0
   groundCheckPoint: {fileID: 1877883963}
@@ -278,6 +278,7 @@ MonoBehaviour:
   groundedMultiplier: 8
   direction: {x: 0, y: 0}
   rb: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!70 &1526845534
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
