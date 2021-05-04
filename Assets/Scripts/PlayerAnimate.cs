@@ -30,7 +30,7 @@ public class PlayerAnimate : MonoBehaviour
 		anim.SetBool("isRunning", pp.isRunning);
 		anim.SetBool("isWalking", pp.isWalking);
         anim.SetBool("isCrouching", pp.isCrouching);
-        
+        anim.SetBool("isNJumping", pp.isNJumping);        
 	}
 
     private void Flip()

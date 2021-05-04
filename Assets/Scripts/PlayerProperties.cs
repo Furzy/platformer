@@ -4,16 +4,19 @@ public class PlayerProperties : MonoBehaviour
 {
     //For Movement
     [Header("Movement")]
-    public float velocity;
+    public Vector2 velocity;
     public bool facingRight = true;
     public bool isWalking = false;
     public float groundedMoveSpeed = 10f;
     public bool isRunning = false;
     public float doubleTapSpeed = 0.3f;
     public float runningMoveSpeed = 10f;
-    public float airMoveSpeed = 22f;
     public bool isCrouching = false;
 
+    //For Jumping
+    [Header("Jumping")]
+    public bool isNJumping = false;
+    public float jumpForce = 0.3f;
 
     //For Ground Check
     [Header("Ground")]
@@ -48,8 +51,8 @@ public class PlayerProperties : MonoBehaviour
 
     private void FixedUpdate()
     {
-        velocity = rb.velocity.x;
         ChangePhysics();
+        velocity = rb.velocity;
     }
 
     private void Inputs()

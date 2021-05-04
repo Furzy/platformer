@@ -22,22 +22,24 @@ public class PlayerGroundMovement : MonoBehaviour
     private void Movement()
     {
         //for run movement
-        if (pp.isGrounded && pp.direction.x!=0 && pp.isRunning)
+        if (pp.isGrounded && pp.direction.y == 0 && pp.isRunning)
         {
             pp.isRunning = true;
             pp.rb.velocity = new Vector2(pp.direction.x * pp.runningMoveSpeed, pp.rb.velocity.y);
 
             pp.isWalking = false;
             pp.isCrouching = false;
+            pp.isNJumping = false;
         }
         //for crouching
-        else if (pp.isGrounded && pp.direction.x == 0 && pp.direction.y == -1)
+        else if (pp.isGrounded && pp.direction.y == -1)
         {
             pp.isCrouching = true;
             pp.rb.velocity = new Vector2(0f, pp.rb.velocity.y);
 
             pp.isWalking = false;
             pp.isRunning = false;
+            pp.isNJumping = false;
         }
         //for idle
         else if (pp.isGrounded && pp.direction.x == 0 && pp.direction.y == 0)
@@ -45,6 +47,7 @@ public class PlayerGroundMovement : MonoBehaviour
             pp.isWalking = false;
             pp.isRunning = false;
             pp.isCrouching = false;
+            pp.isNJumping = false;
             pp.rb.velocity = new Vector2(0f, pp.rb.velocity.y);
         }
         //for walk movement
@@ -55,16 +58,7 @@ public class PlayerGroundMovement : MonoBehaviour
 
             pp.isRunning = false;
             pp.isCrouching = false;
-        }
-
-        // for air movement
-        else if (!pp.isGrounded && pp.direction.x!=0 )
-        {
-            pp.rb.AddForce(new Vector2(pp.airMoveSpeed * pp.direction.x,0));
-            if (Mathf.Abs(pp.rb.velocity.x) > pp.groundedMoveSpeed)
-            {
-                pp.rb.velocity = new Vector2(pp.direction.x * pp.groundedMoveSpeed, pp.rb.velocity.y);
-            }
+            pp.isNJumping = false;
         }
     }
 }
