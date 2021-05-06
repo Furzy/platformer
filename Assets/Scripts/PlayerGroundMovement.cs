@@ -7,17 +7,13 @@ public class PlayerGroundMovement : MonoBehaviour
     private PlayerProperties pp;
     private PlayerAnimate pa;
 
-    public Vector2 velocity;
-    public float groundedMoveSpeed;
-    public float runningMoveSpeed;
+    public float groundedMoveSpeed = 2;
+    public float runningMoveSpeed = 5;
 
     public float doubleTapSpeed = 0.3f;
+    public bool isDoubleTapping = false;
     private bool firstTap;
     private bool doubleTap;
-
-    public bool _wantCrouch;
-    public bool _wantWalk;
-    public bool _wantRun;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,13 +25,8 @@ public class PlayerGroundMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        velocity = pp.rb.velocity;
-        UpdateAnim();
-
         DoubleTap(KeyCode.LeftArrow);
         DoubleTap(KeyCode.RightArrow);
-
-        GetMovement();
     }
 
     private void FixedUpdate()
@@ -43,96 +34,41 @@ public class PlayerGroundMovement : MonoBehaviour
         DoMovement();
     }
 
-    private void UpdateAnim()
-    {
-        _wantCrouch = pa.wantCrouch;
-        _wantRun = pa.wantRun;
-        _wantWalk = pa.wantWalk;
-    }
-
-    private void GetMovement()
-    {
-        if (pp.isGrounded)
-        {
-            //for crouching
-            if (pp.direction.y == -1f)
-            {
-                //for animation
-                pa.wantCrouch = true;
-                pa.wantRun = false;
-                pa.wantWalk = false;                
-            }
-            //for idle
-            else if (pp.direction.x == 0f && pp.direction.y == 0f)
-            {
-                //for animation
-                pa.wantCrouch = false;
-                pa.wantRun = false;
-                pa.wantWalk = false;
-            }
-            //for walk movement
-            else if (pp.direction.x!=0f && pa.wantRun == false)
-            {
-                //for animation
-                pa.wantCrouch = false;
-                pa.wantRun = false;
-                pa.wantWalk = true;
-            }
-            //for run movement
-            else if (pp.direction.y == 0f && pp.direction.x!= 0f && pa.wantRun == true)
-            {
-                //for animation
-                pa.wantCrouch = false;
-                pa.wantRun = true;
-                pa.wantWalk = false;
-            }
-        }
-    }
 
     private void DoMovement()
     {
         if (pp.isGrounded)
         {
-            //for crouching
-            if (pa.wantCrouch)
+            // no vertical input
+            if (Mathf.Abs(pp.direction.y) < 0.1f)
             {
-                //stopping horizontal velocity
-                pp.rb.velocity = new Vector2(0f, pp.rb.velocity.y);
+                // for walk movement
+                if (Mathf.Abs(pp.direction.x) > 0.1f && !isDoubleTapping)
+                {
+                    pp.rb.velocity = new Vector2(pp.direction.x * groundedMoveSpeed, 0f);
+                }
+                // for run movement
+                else if (Mathf.Abs(pp.direction.x) > 0.1f && isDoubleTapping)
+                {
+                    pp.rb.velocity = new Vector2(pp.direction.x * runningMoveSpeed, 0f);
+                    pa.isDoubleTapping = true;
+                }
+                // for idle
+                else if (Mathf.Abs(pp.direction.x) < 0.1f)
+                {
+                    pp.rb.velocity = new Vector2(0f, 0f);
+                    pa.isDoubleTapping = false;
+                }
             }
-            //for idle
-            if (pp.direction.x == 0f && pp.direction.y == 0f)
-            {
-                //for animation
-                pa.wantCrouch = false;
-                pa.wantRun = false;
-                pa.wantWalk = false;
 
-                //stopping horizontal velocity
-                pp.rb.velocity = new Vector2(0f, pp.rb.velocity.y);
-            }
-            //for walk movement
-            if (pp.direction.x != 0f && pa.wantRun == false)
+            // crouching
+            if (pp.direction.y < -0.9f)
             {
-                //for animation
-                pa.wantCrouch = false;
-                pa.wantRun = false;
-                pa.wantWalk = true;
-
-                pp.rb.velocity = new Vector2(pp.direction.x * groundedMoveSpeed, pp.rb.velocity.y);
+                pp.rb.velocity = new Vector2(0f, 0f);
             }
-            //for run movement
-            if (pp.direction.y == 0f && pp.direction.x!= 0f && pa.wantRun == true)
-            {
-                //for animation
-                pa.wantCrouch = false;
-                pa.wantRun = true;
-                pa.wantWalk = false;
 
-                pp.rb.velocity = new Vector2(pp.direction.x * runningMoveSpeed, pp.rb.velocity.y);
-            }
         }
     }
-
 
     private void DoubleTap(KeyCode key)
     {
@@ -153,13 +89,13 @@ public class PlayerGroundMovement : MonoBehaviour
         
         if (doubleTap) 
         { 
-            pa.wantRun = true;
+            isDoubleTapping = true;
         } 
         
         if(Input.GetKeyUp(key))
         { 
             doubleTap = false; 
-            pa.wantRun = false;
+            isDoubleTapping = false;
         } 
 
         IEnumerator CheckDoubleTap()
@@ -169,6 +105,4 @@ public class PlayerGroundMovement : MonoBehaviour
             firstTap = false; 
         }
     }
-
-
 }

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class PlayerProperties : MonoBehaviour
 {
-    [Header("Others")]
     public Vector2 direction;
+    public Vector2 velocity;
+    [HideInInspector]
     public Rigidbody2D rb;
 
     //For Ground Check
@@ -12,13 +13,15 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] Vector2 groundCheckSize;
     [SerializeField] LayerMask groundLayer;
+
     
     //For Physics
-    [Header("Physics")]
-    [SerializeField] float fallMultiplier = 22f;
-    [SerializeField] float lowJumpMultiplier = 14f;
-    [SerializeField] float groundedMultiplier = 8f;
+    // [Header("Physics")]
+    // [SerializeField] float fallMultiplier = 1f;
+    // [SerializeField] float lowJumpMultiplier = 1f;
+    // [SerializeField] float groundedMultiplier = 1f;
 
+    
 
     private void Start()
     {
@@ -27,13 +30,14 @@ public class PlayerProperties : MonoBehaviour
 
     private void Update()
     {
+
         Inputs();
         CheckWorld();
     }
 
     private void FixedUpdate()
     {
-        ChangePhysics();
+        // ChangePhysics();
     }
 
     private void Inputs()
@@ -48,25 +52,27 @@ public class PlayerProperties : MonoBehaviour
     private void CheckWorld()
     {
         checkIfGrounded();
+        velocity = rb.velocity;
+
 
         void checkIfGrounded()
         {
             isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
         }
     }
-    private void ChangePhysics()
-    {
-        if (rb.velocity.y <= 0)
-        {
-            rb.gravityScale = fallMultiplier;
-        } 
-        else if (rb.velocity.y > 0 && direction.y == 0) 
-        {
-            rb.gravityScale = lowJumpMultiplier;
-        } else {
-            rb.gravityScale = groundedMultiplier;
-        }
-    }
+    // private void ChangePhysics()
+    // {
+    //     if (rb.velocity.y <= 0)
+    //     {
+    //         rb.gravityScale = fallMultiplier;
+    //     } 
+    //     else if (rb.velocity.y > 0 && direction.y == 0) 
+    //     {
+    //         rb.gravityScale = lowJumpMultiplier;
+    //     } else {
+    //         rb.gravityScale = groundedMultiplier;
+    //     }
+    // }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;

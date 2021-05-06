@@ -259,16 +259,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
   rb: {fileID: 0}
   isGrounded: 0
   groundCheckPoint: {fileID: 1877883963}
-  groundCheckSize: {x: 0, y: 0}
+  groundCheckSize: {x: 0.8, y: 0.02}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  fallMultiplier: 1
-  lowJumpMultiplier: 1
-  groundedMultiplier: 1
 --- !u!70 &1526845534
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -318,13 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b5b9fd7ebf44bddb09aa21f16ffddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0}
-  groundedMoveSpeed: 1.5
-  runningMoveSpeed: 4
+  groundedMoveSpeed: 3
+  runningMoveSpeed: 5
   doubleTapSpeed: 0.3
-  _wantCrouch: 0
-  _wantWalk: 0
-  _wantRun: 0
+  isDoubleTapping: 0
 --- !u!212 &1526845537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -423,17 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingRight: 1
-  wantWalk: 0
-  isWalking: 0
-  wantRun: 0
-  isRunning: 0
-  wantCrouch: 0
-  isCrouching: 0
-  wantNJump: 0
-  wantBJump: 0
-  wantFJump: 0
-  stillJumping: 0
-  isJumping: 0
+  isDoubleTapping: 0
 --- !u!114 &1526845541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,15 +426,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526845532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8742d40944f54813b92a98c6d4a7d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
-  _wantBJump: 0
-  _wantNJump: 0
-  _wantFJump: 0
+  jumpForce: 7
 --- !u!1 &1551400460
 GameObject:
   m_ObjectHideFlags: 0
