@@ -3,10 +3,12 @@ using System.Collections;
 
 public class PlayerActionScript : MonoBehaviour {
 
+	private PlayerProperties pp;
+    private PlayerAnimate pa;
+
 	private int currentIndex = 0; //moves along the array as buttons are pressed
 	private float timeLastButtonPressed;
 	private bool oldFacing;
-	private PlayerProperties pp;
     
 	[SerializeField] float allowedTimeBetweenButtons = 0.3f; //tweak as needed
 	[SerializeField] float moveTimer = 0.0f;
@@ -19,6 +21,7 @@ public class PlayerActionScript : MonoBehaviour {
 	private void Start () 
 	{
 		pp = GameObject.FindObjectOfType<PlayerProperties>();
+        pa = GameObject.FindObjectOfType<PlayerAnimate>();
 	}
 	
 	// Update is called once per frame
@@ -32,7 +35,7 @@ public class PlayerActionScript : MonoBehaviour {
 
 	private bool Check(string[] buttons)
 	{
-		if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons && (pp.facingRight == oldFacing || pp.facingRight == !pp.facingRight)) currentIndex = 0;
+		if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons && (pa.facingRight == oldFacing || pa.facingRight == !pa.facingRight)) currentIndex = 0;
 		{
 			if (currentIndex < buttons.Length) 
 			{	
@@ -44,7 +47,7 @@ public class PlayerActionScript : MonoBehaviour {
 				    (buttons[currentIndex] != "down" && buttons[currentIndex] != "up" && buttons[currentIndex] != "neutral" && buttons[currentIndex] != "left" && buttons[currentIndex] != "right" && Input.GetKey(buttons[currentIndex])))
 					{
 						timeLastButtonPressed = Time.time;
-						oldFacing = pp.facingRight;
+						oldFacing = pa.facingRight;
 						currentIndex++;
 					}
 				if (currentIndex >= buttons.Length)

@@ -6,7 +6,10 @@ public class PlayerJump : MonoBehaviour
     private PlayerProperties pp;
     private PlayerAnimate pa;
 
-    private bool wantJump = false;
+    //For Jumping
+    [Header("Jumping")]
+    public float jumpForce = 0.3f;
+    private bool _wantNJump;
 
     // Start is called before the first frame update
     private void Start()
@@ -18,6 +21,7 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateAnim();
         DetectJump();
     }
 
@@ -26,21 +30,24 @@ public class PlayerJump : MonoBehaviour
         NJump();
     }
 
+    private void UpdateAnim()
+    {
+        _wantNJump = pa.wantNJump;
+    }
     private void DetectJump()
     {
         //for neutral jump
         if (pp.isGrounded && pp.direction.y == 1)
         {
-            wantJump = true;
+            pa.wantNJump = true;
         }
     }
-
     private void NJump()
     {
-        if (wantJump) 
+        if (pa.wantNJump) 
         {
-            pp.rb.velocity = new Vector2(pp.rb.velocity.y, pp.jumpForce);
-            wantJump = false;
+            pp.rb.velocity = new Vector2(pp.rb.velocity.y, jumpForce);
+            pa.wantNJump = false;
         }
     }
 }

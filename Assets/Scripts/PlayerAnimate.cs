@@ -4,9 +4,21 @@ public class PlayerAnimate : MonoBehaviour
 {
     private Animator anim;
     private PlayerProperties pp;
+    private SpriteRenderer sp;
 
-    public float waitTime = 0.117f;
-    public bool doneWaiting = false;
+    public bool facingRight = true;
+    [HideInInspector]
+    public bool wantWalk = false;
+    public bool isWalking = false;
+    [HideInInspector]
+    public bool wantRun = false;
+    public bool isRunning = false;
+    [HideInInspector]
+    public bool wantCrouch = false;
+    public bool isCrouching = false;
+    [HideInInspector]
+    public bool wantNJump = false;
+    public bool isNJumping = false;
 
 
     // Start is called before the first frame update
@@ -14,62 +26,67 @@ public class PlayerAnimate : MonoBehaviour
     {
 		anim = GetComponent<Animator>();
         pp = GameObject.FindObjectOfType<PlayerProperties>();
-
+        sp = GetComponent<SpriteRenderer>();  
     }
 
     // Update is called once per frame
     private void Update()
     {
+        CheckAnimate();
         Animate();
         Flip();
-
     }
 
+    private void CheckAnimate()
+    {
+        if (pp.isGrounded)
+        {
+            if (wantCrouch)
+            {
+                isCrouching = true;
+                isRunning = false;
+                isWalking = false;
+            }
+            else if (wantWalk)
+            {
+                isWalking = true;
+                isCrouching = false;
+                isWalking = false;
+            }
+            else if (wantRun)
+            {
+                isRunning = true;
+                isCrouching = false;
+                isWalking = false;
+            }
+            isNJumping = false;
+        }
+
+        if (!pp.isGrounded)
+        {
+            isWalking = false;
+            isCrouching = false;
+            isRunning = false;
+        }
+    }
     private void Animate()
 	{
-		anim.SetBool("isRunning", pp.isRunning);
-		anim.SetBool("isWalking", pp.isWalking);
-        anim.SetBool("isCrouching", pp.isCrouching);
-        anim.SetBool("isNJumping", pp.isNJumping);        
+		anim.SetBool("isRunning", isRunning);
+		anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isCrouching", isCrouching);
+        anim.SetBool("isNJumping", isNJumping);        
 	}
-
     private void Flip()
     {
         if (pp.rb.velocity.x > 0.1f) 
         {
-            pp.sp.flipX = false;
+            sp.flipX = false;
         }
         else if (pp.rb.velocity.x < -0.1f)
         {
-            pp.sp.flipX = true;
+            sp.flipX = true;
         }
     }
-
-    // private void SetTriggers()
-    // {
-    //     if(pp.isTurning)
-    //     {    
-    //         anim.SetTrigger("isTurning");
-    //         // Wait until waitTime is below or equal to zero.
-    //         if(waitTime > 0) {
-    //             waitTime -= Time.deltaTime;
-    //         } else {
-    //             // Done.
-    //             doneWaiting = true;
-    //         }
-            
-    //         // Only proceed if doneWaiting is true.
-    //         if(doneWaiting) {
-    //             transform.Rotate(0, 180, 0);
-    //             pp.facingRight = !pp.facingRight;
-    //             pp.isTurning = false;
-    //             doneWaiting = false;
-    //             waitTime = 0.117f;
-    //         }
-
-    //     }
-
-    // }
 }
 
 
