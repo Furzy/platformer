@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObject: {fileID: 1526845532}
-  followOffset: {x: 4.56, y: 0.57}
+  followOffset: {x: 1.5, y: 0.5}
   speed: 3
 --- !u!20 &519420031
 Camera:
@@ -192,7 +192,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 1.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.23, z: -10}
+  m_LocalPosition: {x: 1.37, y: 0.39, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -266,8 +266,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  fallMultiplier: 6
-  lowJumpMultiplier: 4
+  fallMultiplier: 1
+  lowJumpMultiplier: 1
   groundedMultiplier: 1
 --- !u!70 &1526845534
 CapsuleCollider2D:
@@ -319,9 +319,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  groundedMoveSpeed: 5
-  runningMoveSpeed: 8
+  groundedMoveSpeed: 1.5
+  runningMoveSpeed: 4
   doubleTapSpeed: 0.3
+  _wantCrouch: 0
+  _wantWalk: 0
+  _wantRun: 0
 --- !u!212 &1526845537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -427,7 +430,10 @@ MonoBehaviour:
   wantCrouch: 0
   isCrouching: 0
   wantNJump: 0
-  isNJumping: 0
+  wantBJump: 0
+  wantFJump: 0
+  stillJumping: 0
+  isJumping: 0
 --- !u!114 &1526845541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8742d40944f54813b92a98c6d4a7d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0.3
+  jumpForce: 5
+  _wantBJump: 0
+  _wantNJump: 0
+  _wantFJump: 0
 --- !u!1 &1551400460
 GameObject:
   m_ObjectHideFlags: 0

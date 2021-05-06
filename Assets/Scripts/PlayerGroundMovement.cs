@@ -15,9 +15,9 @@ public class PlayerGroundMovement : MonoBehaviour
     private bool firstTap;
     private bool doubleTap;
 
-    private bool _wantCrouch;
-    private bool _wantWalk;
-    private bool _wantRun;
+    public bool _wantCrouch;
+    public bool _wantWalk;
+    public bool _wantRun;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,17 +29,18 @@ public class PlayerGroundMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        velocity = pp.rb.velocity;
         UpdateAnim();
-        //Check DoubleTap first
+
         DoubleTap(KeyCode.LeftArrow);
         DoubleTap(KeyCode.RightArrow);
 
-        Movement();
+        GetMovement();
     }
 
     private void FixedUpdate()
     {
-        velocity = pp.rb.velocity;
+        DoMovement();
     }
 
     private void UpdateAnim()
@@ -49,23 +50,57 @@ public class PlayerGroundMovement : MonoBehaviour
         _wantWalk = pa.wantWalk;
     }
 
-    private void Movement()
+    private void GetMovement()
     {
         if (pp.isGrounded)
         {
             //for crouching
-            if (pp.direction.y == -1)
+            if (pp.direction.y == -1f)
             {
                 //for animation
                 pa.wantCrouch = true;
                 pa.wantRun = false;
+                pa.wantWalk = false;                
+            }
+            //for idle
+            else if (pp.direction.x == 0f && pp.direction.y == 0f)
+            {
+                //for animation
+                pa.wantCrouch = false;
+                pa.wantRun = false;
                 pa.wantWalk = false;
-                
+            }
+            //for walk movement
+            else if (pp.direction.x!=0f && pa.wantRun == false)
+            {
+                //for animation
+                pa.wantCrouch = false;
+                pa.wantRun = false;
+                pa.wantWalk = true;
+            }
+            //for run movement
+            else if (pp.direction.y == 0f && pp.direction.x!= 0f && pa.wantRun == true)
+            {
+                //for animation
+                pa.wantCrouch = false;
+                pa.wantRun = true;
+                pa.wantWalk = false;
+            }
+        }
+    }
+
+    private void DoMovement()
+    {
+        if (pp.isGrounded)
+        {
+            //for crouching
+            if (pa.wantCrouch)
+            {
                 //stopping horizontal velocity
                 pp.rb.velocity = new Vector2(0f, pp.rb.velocity.y);
             }
             //for idle
-            else if (pp.direction.x == 0 && pp.direction.y == 0)
+            if (pp.direction.x == 0f && pp.direction.y == 0f)
             {
                 //for animation
                 pa.wantCrouch = false;
@@ -76,7 +111,7 @@ public class PlayerGroundMovement : MonoBehaviour
                 pp.rb.velocity = new Vector2(0f, pp.rb.velocity.y);
             }
             //for walk movement
-            else if (pp.direction.x!=0 && pa.wantRun == false)
+            if (pp.direction.x != 0f && pa.wantRun == false)
             {
                 //for animation
                 pa.wantCrouch = false;
@@ -86,7 +121,7 @@ public class PlayerGroundMovement : MonoBehaviour
                 pp.rb.velocity = new Vector2(pp.direction.x * groundedMoveSpeed, pp.rb.velocity.y);
             }
             //for run movement
-            else if (pp.direction.y == 0 && pp.direction.x!= 0 && pa.wantRun == true)
+            if (pp.direction.y == 0f && pp.direction.x!= 0f && pa.wantRun == true)
             {
                 //for animation
                 pa.wantCrouch = false;
@@ -97,6 +132,7 @@ public class PlayerGroundMovement : MonoBehaviour
             }
         }
     }
+
 
     private void DoubleTap(KeyCode key)
     {

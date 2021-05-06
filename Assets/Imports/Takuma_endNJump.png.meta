@@ -32,6 +32,21 @@ TextureImporter:
   - first:
       213: -1197206194025858490
     second: Takuma_NJump_9
+  - first:
+      213: 1632622631139976830
+    second: Takuma_endNJump_0
+  - first:
+      213: -4491887396202111759
+    second: Takuma_endNJump_1
+  - first:
+      213: 1799306528097985178
+    second: Takuma_endNJump_2
+  - first:
+      213: -5166233015817232576
+    second: Takuma_endNJump_3
+  - first:
+      213: 8830271551132200004
+    second: Takuma_endNJump_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Takuma_NJump_0
+      name: Takuma_endNJump_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92aa51dc63327d410800000000000000
-      internalID: 1501707719027305001
+      spriteID: e76ac5d02ad38a610800000000000000
+      internalID: 1632622631139976830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_NJump_1
+      name: Takuma_endNJump_1
       rect:
         serializedVersion: 2
         x: 145
@@ -156,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef0c30ec42e0e2730800000000000000
-      internalID: 3976131072252690686
+      spriteID: 1fc9152563c99a1c0800000000000000
+      internalID: -4491887396202111759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_NJump_2
+      name: Takuma_endNJump_2
       rect:
         serializedVersion: 2
         x: 290
@@ -177,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdcaa5846371d8ce0800000000000000
-      internalID: -1401438387132781349
+      spriteID: a92625111cb68f810800000000000000
+      internalID: 1799306528097985178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_NJump_3
+      name: Takuma_endNJump_3
       rect:
         serializedVersion: 2
         x: 435
@@ -198,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 839f94bd05e10e900800000000000000
-      internalID: 711602073749813560
+      spriteID: 04f9159a17add48b0800000000000000
+      internalID: -5166233015817232576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_NJump_4
+      name: Takuma_endNJump_4
       rect:
         serializedVersion: 2
         x: 580
@@ -219,113 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14e1e28087b9d7190800000000000000
-      internalID: -7963037626285547967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_NJump_5
-      rect:
-        serializedVersion: 2
-        x: 725
-        y: 0
-        width: 145
-        height: 257
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eda4517ac6d58c8f0800000000000000
-      internalID: -520063035720250658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_NJump_6
-      rect:
-        serializedVersion: 2
-        x: 870
-        y: 0
-        width: 145
-        height: 257
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2147446c59f3d6930800000000000000
-      internalID: 4138033545132405778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_NJump_7
-      rect:
-        serializedVersion: 2
-        x: 1015
-        y: 0
-        width: 145
-        height: 257
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee08efd6ab001ae90800000000000000
-      internalID: -7016325943757209362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_NJump_8
-      rect:
-        serializedVersion: 2
-        x: 1160
-        y: 0
-        width: 145
-        height: 257
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ca38baa0116e27b0800000000000000
-      internalID: -5247149791628477760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_NJump_9
-      rect:
-        serializedVersion: 2
-        x: 1305
-        y: 0
-        width: 145
-        height: 257
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64af0324f4ba26fe0800000000000000
-      internalID: -1197206194025858490
+      spriteID: 44ce873e03d6b8a70800000000000000
+      internalID: 8830271551132200004
       vertices: []
       indices: 
       edges: []
