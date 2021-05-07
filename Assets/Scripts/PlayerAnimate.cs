@@ -23,15 +23,17 @@ public class PlayerAnimate : MonoBehaviour
 
     [HideInInspector]
     public Animator anim;
-    public AnimationState currentAnimationState = AnimationState.PLAYER_IDLE;
+    private AnimationState currentAnimationState = AnimationState.PLAYER_IDLE;
 
     private PlayerProperties pp;
     private SpriteRenderer sp;
     private PlayerGroundMovement pgm;
 
     public bool facingRight = true;
-    public bool animationPlaying = false;
-    public float animationLength = 0f;
+    private bool animationPlaying = false;
+    private float animationLength = 0f;
+    private AnimationState currentAnimationName;
+    private AnimationState oldAnimationName;
 
     private bool isKeyHolding = false;
     private bool keyDown = false;
@@ -109,7 +111,8 @@ public class PlayerAnimate : MonoBehaviour
                     anim.Play("Player_CrouchStart");
                     animationLength = anim.GetCurrentAnimatorStateInfo(0).length - 0.8f;
                     animationPlaying = true;
-                    StartCoroutine("WaitForAnimationEnd", animationLength);
+                    currentAnimationName = AnimationState.PLAYER_CROUCHSTART;
+                    StartCoroutine("WaitForAnimationEnd", AnimationState.PLAYER_CROUCHING);
                     break;
                 case AnimationState.PLAYER_CROUCHING:
                     anim.Play("Player_Crouching");
@@ -121,14 +124,14 @@ public class PlayerAnimate : MonoBehaviour
         }
     }
 
-    IEnumerator WaitForAnimationEnd(float _animationLength)
+    IEnumerator WaitForAnimationEnd(AnimationState _nextAnimationState)
     { 
-        yield return new WaitForSeconds(_animationLength); 
-        currentAnimationState = AnimationState.PLAYER_CROUCHING;
+        oldAnimationName = currentAnimationName;
+        while (currentAnimationName == oldAnimationName && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        yield return new WaitForSeconds(animationLength); 
+        currentAnimationState = _nextAnimationState;
         animationPlaying = false;
     }
-
-
     private void Flip()
     {
         if (pp.rb.velocity.x > 0.1f) 
@@ -140,43 +143,6 @@ public class PlayerAnimate : MonoBehaviour
             sp.flipX = true;
         }
     }
-
-    // private void HoldKey(KeyCode _key, float _animationLength)
-    // {
-    //     if (!keyDown) 
-    //     { 
-    //         if (Input.GetKeyDown(_key)) 
-    //         { 
-    //             StartCoroutine (CheckHoldKey()); 
-    //         } 
-    //     } 
-    //     else 
-    //     { 
-    //         if (Input.GetKey(_key) && !Input.GetKeyDown(_key)) 
-    //         { 
-    //             keyHold = true; 
-    //         } 
-    //     } 
-        
-    //     if (keyHold) 
-    //     { 
-    //         isKeyHolding = true;
-    //     } 
-        
-    //     if(Input.GetKeyUp(_key))
-    //     { 
-    //         keyHold = false; 
-    //         isKeyHolding = false;
-    //     } 
-
-    //     IEnumerator CheckHoldKey()
-    //     { 
-    //         keyDown = true; 
-    //         yield return new WaitForSeconds(_animationLength); 
-    //         keyDown = false; 
-    //     }
-    // }
-
 }
 
 
