@@ -112,10 +112,16 @@ public class PlayerAnimate : MonoBehaviour
                     animationLength = anim.GetCurrentAnimatorStateInfo(0).length - 0.8f;
                     animationPlaying = true;
                     currentAnimationName = AnimationState.PLAYER_CROUCHSTART;
-                    StartCoroutine("WaitForAnimationEnd", AnimationState.PLAYER_CROUCHING);
+                    StartCoroutine(WaitForAnimationEnd(AnimationState.PLAYER_CROUCHING));
                     break;
                 case AnimationState.PLAYER_CROUCHING:
                     anim.Play("Player_Crouching");
+                    break;
+                case AnimationState.PLAYER_WALK:
+                    anim.Play("Player_Walk");
+                    break;
+                case AnimationState.PLAYER_RUN:
+                    anim.Play("Player_Run");
                     break;
                 default:
                     anim.Play("Player_Idle");
