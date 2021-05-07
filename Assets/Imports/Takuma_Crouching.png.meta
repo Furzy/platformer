@@ -1,46 +1,34 @@
 fileFormatVersion: 2
-guid: 858f1c0aed2514b48b2c0c27e7640aa2
+guid: 6d3ee5c25aa0b4523936fc4ab760f672
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6903505443477366208
-    second: Takuma_Crouch_0
+      213: 7357145726325899952
+    second: Takuma_Crouching_0
   - first:
-      213: 928330490832450644
-    second: Takuma_Crouch_1
+      213: -4374078266162346427
+    second: Takuma_Crouching_1
   - first:
-      213: -5030160795313348052
-    second: Takuma_Crouch_2
+      213: 8631805073865847531
+    second: Takuma_Crouching_2
   - first:
-      213: -1425702381113277004
-    second: Takuma_Crouch_3
+      213: 4408661232736646344
+    second: Takuma_Crouching_3
   - first:
-      213: 2299116161948800301
-    second: Takuma_Crouch_4
+      213: -4653228534759781430
+    second: Takuma_Crouching_4
   - first:
-      213: -8071693398820818940
-    second: Takuma_Crouch_5
+      213: -3401784487671906773
+    second: Takuma_Crouching_5
   - first:
-      213: 7180201430524933183
-    second: Takuma_Crouch_6
+      213: -166132230052175351
+    second: Takuma_Crouching_6
   - first:
-      213: 8661011530603498678
-    second: Takuma_Crouch_7
+      213: -9166430500841634327
+    second: Takuma_Crouching_7
   - first:
-      213: 9029668739946380387
-    second: Takuma_Crouch_8
-  - first:
-      213: -5437169434044075451
-    second: Takuma_Crouch_9
-  - first:
-      213: -3311950979282931085
-    second: Takuma_Crouch_10
-  - first:
-      213: 4640356369858190419
-    second: Takuma_Crouch_11
-  - first:
-      213: 2268847927905920723
-    second: Takuma_Crouch_12
+      213: 421549343537988698
+    second: Takuma_Crouching_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,274 +118,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Takuma_Crouch_0
+      name: Takuma_Crouching_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 23
+        y: 0
         width: 152
-        height: 197
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c5a17fdf9d2ecf50800000000000000
-      internalID: 6903505443477366208
+      spriteID: 0b2407aee05d91660800000000000000
+      internalID: 7357145726325899952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_1
+      name: Takuma_Crouching_1
       rect:
         serializedVersion: 2
         x: 152
-        y: 23
+        y: 0
         width: 152
-        height: 197
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4547b34b9a712ec00800000000000000
-      internalID: 928330490832450644
+      spriteID: 54603a5edf62c43c0800000000000000
+      internalID: -4374078266162346427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_2
+      name: Takuma_Crouching_2
       rect:
         serializedVersion: 2
         x: 304
-        y: 23
+        y: 0
         width: 152
-        height: 197
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2260485867413ab0800000000000000
-      internalID: -5030160795313348052
+      spriteID: be2303e3bf45ac770800000000000000
+      internalID: 8631805073865847531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_3
+      name: Takuma_Crouching_3
       rect:
         serializedVersion: 2
         x: 456
-        y: 23
+        y: 0
         width: 152
-        height: 197
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b58052fc33e63ce0800000000000000
-      internalID: -1425702381113277004
+      spriteID: 8c4bd487806be2d30800000000000000
+      internalID: 4408661232736646344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_4
+      name: Takuma_Crouching_4
       rect:
         serializedVersion: 2
         x: 608
-        y: 17
+        y: 0
         width: 152
-        height: 203
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d255152d7f918ef10800000000000000
-      internalID: 2299116161948800301
+      spriteID: acb8eee2d496c6fb0800000000000000
+      internalID: -4653228534759781430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_5
+      name: Takuma_Crouching_5
       rect:
         serializedVersion: 2
         x: 760
-        y: 17
+        y: 0
         width: 152
-        height: 203
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4007b639e959bff80800000000000000
-      internalID: -8071693398820818940
+      spriteID: b2eb1e9280f6ac0d0800000000000000
+      internalID: -3401784487671906773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_6
+      name: Takuma_Crouching_6
       rect:
         serializedVersion: 2
         x: 912
-        y: 17
+        y: 0
         width: 152
-        height: 203
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f34b032a82335a360800000000000000
-      internalID: 7180201430524933183
+      spriteID: 9022ff1fd97c1bdf0800000000000000
+      internalID: -166132230052175351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_7
+      name: Takuma_Crouching_7
       rect:
         serializedVersion: 2
         x: 1064
-        y: 17
+        y: 0
         width: 152
-        height: 203
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bc0f2d5918123870800000000000000
-      internalID: 8661011530603498678
+      spriteID: 9e5470b760c4ac080800000000000000
+      internalID: -9166430500841634327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Takuma_Crouch_8
+      name: Takuma_Crouching_8
       rect:
         serializedVersion: 2
         x: 1216
-        y: 17
+        y: 0
         width: 152
-        height: 203
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36cf3f3b0e3df4d70800000000000000
-      internalID: 9029668739946380387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_Crouch_9
-      rect:
-        serializedVersion: 2
-        x: 1368
-        y: 17
-        width: 152
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 542f034053b4b84b0800000000000000
-      internalID: -5437169434044075451
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_Crouch_10
-      rect:
-        serializedVersion: 2
-        x: 1520
-        y: 17
-        width: 152
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 372755eb1269902d0800000000000000
-      internalID: -3311950979282931085
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_Crouch_11
-      rect:
-        serializedVersion: 2
-        x: 1672
-        y: 17
-        width: 152
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35c5e90688bd56040800000000000000
-      internalID: 4640356369858190419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Takuma_Crouch_12
-      rect:
-        serializedVersion: 2
-        x: 1824
-        y: 17
-        width: 152
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 6, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d6a6386b219c7f10800000000000000
-      internalID: 2268847927905920723
+      spriteID: a5481ecf4e4a9d500800000000000000
+      internalID: 421549343537988698
       vertices: []
       indices: 
       edges: []
