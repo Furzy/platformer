@@ -51,13 +51,11 @@ public class PlayerGroundMovement : MonoBehaviour
                 else if (Mathf.Abs(pp.direction.x) > 0.1f && isDoubleTapping)
                 {
                     pp.rb.velocity = new Vector2(pp.direction.x * runningMoveSpeed, 0f);
-                    pa.isDoubleTapping = true;
                 }
                 // for idle
                 else if (Mathf.Abs(pp.direction.x) < 0.1f)
                 {
                     pp.rb.velocity = new Vector2(0f, 0f);
-                    pa.isDoubleTapping = false;
                 }
             }
 

@@ -29,6 +29,18 @@ TextureImporter:
   - first:
       213: 9029668739946380387
     second: Takuma_Crouch_8
+  - first:
+      213: -5437169434044075451
+    second: Takuma_Crouch_9
+  - first:
+      213: -3311950979282931085
+    second: Takuma_Crouch_10
+  - first:
+      213: 4640356369858190419
+    second: Takuma_Crouch_11
+  - first:
+      213: 2268847927905920723
+    second: Takuma_Crouch_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -122,9 +134,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 23
         width: 152
-        height: 207
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,9 +155,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 152
-        y: 0
+        y: 23
         width: 152
-        height: 207
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,9 +176,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 304
-        y: 0
+        y: 23
         width: 152
-        height: 207
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,9 +197,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 456
-        y: 0
+        y: 23
         width: 152
-        height: 207
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,12 +218,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 608
-        y: 0
+        y: 17
         width: 152
-        height: 207
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -227,12 +239,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 760
-        y: 0
+        y: 17
         width: 152
-        height: 207
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -248,12 +260,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 912
-        y: 0
+        y: 17
         width: 152
-        height: 207
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -269,12 +281,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1064
-        y: 0
+        y: 17
         width: 152
-        height: 207
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -290,18 +302,102 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1216
-        y: 0
+        y: 17
         width: 152
-        height: 207
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 36cf3f3b0e3df4d70800000000000000
       internalID: 9029668739946380387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Takuma_Crouch_9
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 17
+        width: 152
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542f034053b4b84b0800000000000000
+      internalID: -5437169434044075451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Takuma_Crouch_10
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 17
+        width: 152
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 372755eb1269902d0800000000000000
+      internalID: -3311950979282931085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Takuma_Crouch_11
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 17
+        width: 152
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c5e90688bd56040800000000000000
+      internalID: 4640356369858190419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Takuma_Crouch_12
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 17
+        width: 152
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 6, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6a6386b219c7f10800000000000000
+      internalID: 2268847927905920723
       vertices: []
       indices: 
       edges: []
