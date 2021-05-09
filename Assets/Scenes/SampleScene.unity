@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObject: {fileID: 1526845532}
-  followOffset: {x: 1.5, y: 0.5}
+  followOffset: {x: 0.5, y: 0}
   speed: 3
 --- !u!20 &519420031
 Camera:
@@ -192,7 +192,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 1.67
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0.64, z: -10}
+  m_LocalPosition: {x: 0.95, y: 0.466, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -235,10 +235,11 @@ GameObject:
   - component: {fileID: 1526845535}
   - component: {fileID: 1526845539}
   - component: {fileID: 1526845534}
-  - component: {fileID: 1526845533}
+  - component: {fileID: 1526845542}
+  - component: {fileID: 1526845541}
   - component: {fileID: 1526845540}
   - component: {fileID: 1526845536}
-  - component: {fileID: 1526845541}
+  - component: {fileID: 1526845533}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -255,18 +256,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526845532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6a6c4e7410d4a9eb5bab74f10c1a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 09608f0efdbf0414181b7781a436273e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
-  velocity: {x: 0, y: 0}
-  rb: {fileID: 0}
-  isGrounded: 0
-  groundCheckPoint: {fileID: 1877883963}
-  groundCheckSize: {x: 0.8, y: 0.02}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  playerScript: {fileID: 0}
 --- !u!70 &1526845534
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -313,13 +306,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526845532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61b5b9fd7ebf44bddb09aa21f16ffddb, type: 3}
+  m_Script: {fileID: 11500000, guid: f046435446ce54231a81e25c9d256bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundedMoveSpeed: 3
-  runningMoveSpeed: 5
-  doubleTapSpeed: 0.3
-  isDoubleTapping: 0
+  playerScript: {fileID: 0}
 --- !u!212 &1526845537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -414,11 +404,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526845532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923604f72a15949eb8c62b868d0c40fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c08739b4f80d4b4799866cb1771d497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  facingRight: 1
+  playerScript: {fileID: 0}
 --- !u!114 &1526845541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,10 +417,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526845532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8742d40944f54813b92a98c6d4a7d74, type: 3}
+  m_Script: {fileID: 11500000, guid: c2f26cc87d31e4dbb914a306bda4f759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  playerScript: {fileID: 0}
+  groundedMoveSpeed: 2
+  runningMoveSpeed: 5
+  doubleKeySpeed: 0.3
+--- !u!114 &1526845542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526845532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120900c9305f54f1fb69e255b7f012de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputScript: {fileID: 0}
+  playerMovementScript: {fileID: 0}
+  playerCollisionScript: {fileID: 0}
+  playerAnimationScript: {fileID: 0}
+  isGrounded: 0
+  groundCheckPoint: {fileID: 1877883963}
+  groundCheckSize: {x: 0.8, y: 0.01}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  currentState: {fileID: 0}
+  direction: {x: 0, y: 0}
 --- !u!1 &1666809386
 GameObject:
   m_ObjectHideFlags: 0
