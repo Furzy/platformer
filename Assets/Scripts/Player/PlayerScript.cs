@@ -33,22 +33,27 @@ public class PlayerScript : MonoBehaviour
     internal Rigidbody2D rb2d;
 
     [Header("Other")]
-    public AnimationState currentState;
+    public PlayerState currentState;
+    public PlayerState newState;
     public Vector2 direction;
-
     
     // Awake is called before Start
     private void Awake()
     {
-        print("PlayerScript Awake");
+        Debug.Log("PlayerScript Awake");
 
         playerInputScript = GetComponent<PlayerInputScript>();
         playerMovementScript = GetComponent<PlayerMovementScript>();
         playerCollisionScript = GetComponent<PlayerCollisionScript>();
         playerAnimationScript = GetComponent<PlayerAnimationScript>();
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        ChangeState(PlayerState.IDLE);
     }
 
     // Update is called once per frame
@@ -63,12 +68,6 @@ public class PlayerScript : MonoBehaviour
         isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
     }
 
-    internal void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(groundCheckPoint.position, groundCheckSize);
-    }
-
     internal void FlipSprite()
     {
         if (rb2d.velocity.x > 0.1f) 
@@ -81,14 +80,19 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    internal void ChangeState(AnimationState newState)
+    internal void OnDrawGizmosSelected()
     {
-        if(newState != currentState)
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(groundCheckPoint.position, groundCheckSize);
+    }
+
+    internal void ChangeState(PlayerState _newState)
+    {
+        if(_newState != currentState)
         {
-            //animator.Play(newState.ToString()); // Need to make sure .toString works in this context
-            currentState = newState;
+            animator.Play(newState.ToString()); // Need to make sure .toString works in this context
+            currentState = _newState;
         }
            
     }
-
 }

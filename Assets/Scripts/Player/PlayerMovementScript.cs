@@ -16,22 +16,25 @@ public class PlayerMovementScript : MonoBehaviour
     internal float runningMoveSpeed = 5;
     [SerializeField]
     internal float doubleKeySpeed = 0.3f;
-    internal bool isDoubleKeying = false;
+
     internal bool firstKey;
     internal bool doubleKey;
+    internal bool wantRun = false;
+
+
+    
 
     // Start is called before the first frame update
     private void Start()
     {
-        print("PlayerMovementScript Starting");
+        Debug.Log("PlayerMovementScript Starting");
         playerScript = GetComponent<PlayerScript>();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        CheckDoubleKey(KeyCode.LeftArrow);
-        CheckDoubleKey(KeyCode.RightArrow);
+    private void Update() {
+        CheckMovement();
+        CheckRun(KeyCode.LeftArrow);
+        CheckRun(KeyCode.RightArrow);
     }
 
     private void FixedUpdate()
@@ -39,58 +42,52 @@ public class PlayerMovementScript : MonoBehaviour
         DoMovement();
     }
 
-    private void DoMovement()
+    private void CheckMovement()
     {
         if (playerScript.isGrounded)
         {
             if (Mathf.Abs(playerScript.direction.y) < 0.1f)
             {
-                if (Mathf.Abs(playerScript.direction.x) > 0.9f && !isDoubleKeying) 
+                if (Mathf.Abs(playerScript.direction.x) > 0.9f)
                 {
-                    Debug.Log("Hello");
-                    playerScript.rb2d.velocity = new Vector2(playerScript.direction.x * groundedMoveSpeed, 0f);
-                    // playerScript.currentState = AnimationState.PLAYER_WALK;
-                }
-                else if (Mathf.Abs(playerScript.direction.x) > 0.9f && isDoubleKeying)
-                {
-                    playerScript.rb2d.velocity = new Vector2(playerScript.direction.x * runningMoveSpeed, 0f);
-                    // playerScript.currentState = AnimationState.PLAYER_RUN;
+                    playerScript.ChangeState(PlayerState.WALK);
+
+                    if (wantRun) 
+                    {
+                        playerScript.ChangeState(PlayerState.RUN);
+                    }
                 }
                 else 
                 {
-                    playerScript.rb2d.velocity = new Vector2(0f, 0f);
-                    // playerScript.currentState = AnimationState.PLAYER_IDLE;
+                    playerScript.ChangeState(PlayerState.IDLE);
                 }
             }
 
             else if (playerScript.direction.y < -0.9f)
             {
-                playerScript.rb2d.velocity = new Vector2(0f, 0f);
-                // playerScript.currentState = AnimationState.PLAYER_CROUCHSTART;
+                    playerScript.ChangeState(PlayerState.CROUCH);
             }
 
             //for jumping
             else
             {
-                if (playerScript.direction.x < -0.9f) // back jumping
+                if (playerScript.direction.x < -0.9f) 
                 {
-                    // Start back jump
-                    // playerScript.currentState = AnimationState.PLAYER_JUMPBACKSTART;
+                    playerScript.ChangeState(PlayerState.BACKJUMP);
                 }
-                else if (playerScript.direction.x > 0.9f) // front jumping
+                else if (playerScript.direction.x > 0.9f) 
                 {
-                    // Start front jump
-                    // playerScript.currentState = AnimationState.PLAYER_JUMPFRONTSTART;
+                    playerScript.ChangeState(PlayerState.FORWARDJUMP);
                 }
                 else // neutral jumping
                 {
-                    // Start neutral jump
-                    // playerScript.currentState = AnimationState.PLAYER_JUMPNEUTRALSTART;
+                    playerScript.ChangeState(PlayerState.NEUTRALJUMP);
                 }
             }
         }
     }
-    private void CheckDoubleKey(KeyCode key)
+
+    private void CheckRun(KeyCode key)
     {
         if (!firstKey) // firstTap is false by default
         { 
@@ -104,12 +101,12 @@ public class PlayerMovementScript : MonoBehaviour
         } 
         
         if (doubleKey) 
-        {isDoubleKeying = true;} 
+        {wantRun = true;} 
         
         if(Input.GetKeyUp(key)) // Remove double tap on Key up
         { 
             doubleKey = false; 
-            isDoubleKeying = false;
+            wantRun = false;
         } 
 
         IEnumerator WaitForSecondKey()
@@ -119,4 +116,23 @@ public class PlayerMovementScript : MonoBehaviour
             firstKey = false; 
         }
     }
+
+    private void DoMovement()
+    {
+        switch (playerScript.currentState)
+        {
+            case PlayerState.WALK:
+                playerScript.rb2d.velocity = new Vector2(playerScript.direction.x * groundedMoveSpeed, 0f);
+                break;
+            case PlayerState.RUN:
+                playerScript.rb2d.velocity = new Vector2(playerScript.direction.x * runningMoveSpeed, 0f);
+                break;
+            default:
+                playerScript.rb2d.velocity = new Vector2(0f, 0f);
+                break;
+        }
+    }
 }
+
+
+

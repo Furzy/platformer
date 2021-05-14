@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerAnimate : PlayerScript
 {
-    public enum AnimationState 
+    public enum AnimationState
     {
         PLAYER_IDLE, 
         PLAYER_WALK, 

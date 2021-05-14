@@ -9,10 +9,11 @@ public class PlayerInputScript : MonoBehaviour
     [SerializeField]
     internal PlayerScript playerScript;
 
+
     // Start is called before the first frame update
     private void Start()
     {
-        print("PlayerInputScript Starting");
+        Debug.Log("PlayerInputScript Starting");
         playerScript = GetComponent<PlayerScript>();
     }
 
@@ -21,8 +22,6 @@ public class PlayerInputScript : MonoBehaviour
     {
         Inputs();
     }
-    
-
 
     private void Inputs()
     {

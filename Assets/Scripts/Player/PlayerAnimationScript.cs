@@ -12,13 +12,30 @@ public class PlayerAnimationScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        print("PlayerAnimationScript Starting");
+        Debug.Log("PlayerAnimationScript Starting");
         playerScript = GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (playerScript.currentState)
+        {
+            case PlayerState.WALK:
+                playerScript.animator.Play("Player_Walk");
+                break;
+            case PlayerState.RUN:
+                playerScript.animator.Play("Player_Run");
+                break;
+            case PlayerState.CROUCH:
+                playerScript.animator.Play("Player_CrouchStart");
+                break;
+            case PlayerState.NEUTRALJUMP:
+                playerScript.animator.Play("Player_startNJump");
+                break;
+            default:
+                playerScript.animator.Play("Player_Idle");
+                break;
+        }
     }
 }

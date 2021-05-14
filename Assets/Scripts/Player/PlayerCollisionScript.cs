@@ -12,7 +12,7 @@ public class PlayerCollisionScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        print("PlayerCollisionScript Starting");
+        Debug.Log("PlayerCollisionScript Starting");
         playerScript = GetComponent<PlayerScript>();
     }
 

@@ -97,8 +97,7 @@ AnimatorState:
   m_Name: Player_CrouchStart
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -9006034436398325518}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -502,8 +501,7 @@ AnimatorState:
   m_Name: Player_Crouching
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 7907727314102755938}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -2060,6 +2058,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &8001041291063660549
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d581eee54f24db887f39e0ca2fe443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1101 &8615689256056459800
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
