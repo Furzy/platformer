@@ -394,6 +394,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerScript: {fileID: 0}
+  groundedMoveSpeed: 2
+  runningMoveSpeed: 5
+  doubleKeySpeed: 0.3
+  wantRun: 0
 --- !u!114 &1526845542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,16 +410,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120900c9305f54f1fb69e255b7f012de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerInputScript: {fileID: 0}
+  PlayerMovementScript: {fileID: 0}
   groundCheckPoint: {fileID: 1877883963}
   groundCheckSize: {x: 0.8, y: 0.01}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  state: 
-  groundedMoveSpeed: 2
-  runningMoveSpeed: 5
-  doubleKeySpeed: 0.3
-  Direction: {x: 0, y: 0}
 --- !u!1 &1666809386
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,8 +26,8 @@ public class PlayerScript : StateMachine
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
     internal Rigidbody2D Rb2d;
-    internal float AnimationNormalizedTime;
     internal float AnimationLength;
+    internal float AnimationNormalizedTime;
 
     // Awake is called before Start
     private void Awake()
@@ -43,8 +43,8 @@ public class PlayerScript : StateMachine
         CheckGround();
         FlipSprite();
 
-        AnimationNormalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         AnimationLength = Animator.GetCurrentAnimatorStateInfo(0).length;
+        AnimationNormalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         state = State; // For the Unity Inspector
     }
     

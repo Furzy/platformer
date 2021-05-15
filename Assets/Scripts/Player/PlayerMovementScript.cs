@@ -35,7 +35,7 @@ public class PlayerMovementScript : StateMachine
     {
         if (PlayerScript.isGrounded)
         {
-            if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
+            if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f) // Standing
             {
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 {
@@ -48,15 +48,26 @@ public class PlayerMovementScript : StateMachine
                         PlayerScript.SetState(new Run(PlayerScript, this));
                     }
                 }
-                else 
-                {
-                    PlayerScript.SetState(new Idle(PlayerScript, this));
-                }
             }
-
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 PlayerScript.SetState(new Crouch(PlayerScript, this));
+            }
+            
+            if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f && Mathf.Abs(PlayerScript.Direction.x) < 0.1f)
+            {
+                if (Input.GetKeyUp(KeyCode.DownArrow))
+                {
+                    PlayerScript.SetState(new Standing(PlayerScript, this));
+                }
+                else if (PlayerScript.state.ToString() == "Standing" && PlayerScript.AnimationNormalizedTime >= 1f)
+                {
+                    PlayerScript.SetState(new Idle(PlayerScript, this));
+                }
+                else if (PlayerScript.state.ToString() != "Standing")
+                {
+                    PlayerScript.SetState(new Idle(PlayerScript, this));
+                }
             }
 
             //for jumping
