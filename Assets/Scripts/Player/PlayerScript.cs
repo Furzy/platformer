@@ -6,93 +6,80 @@ using UnityEngine;
 // The main player script
 //=============================================
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : StateMachine
 {
     //Store a reference to all sub player scripts
     [Header("SubScripts")]
-    [SerializeField]
-    internal PlayerInputScript playerInputScript;
-    [SerializeField]
-    internal PlayerMovementScript playerMovementScript;
-    [SerializeField]
-    internal PlayerCollisionScript playerCollisionScript;
-    [SerializeField]
-    internal PlayerAnimationScript playerAnimationScript;
+    [SerializeField] private PlayerInputScript PlayerInputScript;
+    [SerializeField] private PlayerMovementScript PlayerMovementScript;
+    [SerializeField] private PlayerCollisionScript PlayerCollisionScript;
+    [SerializeField] private PlayerAnimationScript PlayerAnimationScript;
 
     //For Ground Check
     [Header("Ground")]
-    public bool isGrounded;
-    [SerializeField] Transform groundCheckPoint;
-    [SerializeField] Vector2 groundCheckSize;
-    [SerializeField] LayerMask groundLayer;
+    internal bool isGrounded;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private Vector2 groundCheckSize;
+    [SerializeField] private LayerMask groundLayer;
 
+    internal Animator Animator;
+    internal SpriteRenderer SpriteRenderer;
+    internal Rigidbody2D Rb2d;
 
-    [Header("Components")]
-    internal Animator animator;
-    internal SpriteRenderer spriteRenderer;
-    internal Rigidbody2D rb2d;
-
-    [Header("Other")]
-    public PlayerState currentState;
-    public PlayerState newState;
-    public Vector2 direction;
+    [Header("Movement")]
+    [SerializeField] internal float groundedMoveSpeed = 2;
+    [SerializeField] internal float runningMoveSpeed = 5;
+    [SerializeField] internal float doubleKeySpeed = 0.3f;
+    [SerializeField] internal Vector2 Direction;
     
     // Awake is called before Start
     private void Awake()
     {
         Debug.Log("PlayerScript Awake");
 
-        playerInputScript = GetComponent<PlayerInputScript>();
-        playerMovementScript = GetComponent<PlayerMovementScript>();
-        playerCollisionScript = GetComponent<PlayerCollisionScript>();
-        playerAnimationScript = GetComponent<PlayerAnimationScript>();
-
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb2d = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start() {
-        ChangeState(PlayerState.IDLE);
+        GetComponents();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        CheckWorld();
+        CheckGround();
         FlipSprite();
     }
+    
+    private void GetComponents()
+    {
+        PlayerInputScript = GetComponent<PlayerInputScript>();
+        PlayerMovementScript = GetComponent<PlayerMovementScript>();
+        PlayerCollisionScript = GetComponent<PlayerCollisionScript>();
+        PlayerAnimationScript = GetComponent<PlayerAnimationScript>();
 
-    internal void CheckWorld()
+        Animator = GetComponent<Animator>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        Rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    private void CheckGround()
     {
         isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
     }
 
-    internal void FlipSprite()
+    private void FlipSprite()
     {
-        if (rb2d.velocity.x > 0.1f) 
+        if (Rb2d.velocity.x > 0.1f) 
         {
-            spriteRenderer.flipX = false;
+            SpriteRenderer.flipX = false;
         }
-        else if (rb2d.velocity.x < -0.1f)
+        else if (Rb2d.velocity.x < -0.1f)
         {
-            spriteRenderer.flipX = true;
+            SpriteRenderer.flipX = true;
         }
     }
 
-    internal void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(groundCheckPoint.position, groundCheckSize);
     }
 
-    internal void ChangeState(PlayerState _newState)
-    {
-        if(_newState != currentState)
-        {
-            animator.Play(newState.ToString()); // Need to make sure .toString works in this context
-            currentState = _newState;
-        }
-           
-    }
 }
