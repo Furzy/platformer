@@ -37,7 +37,7 @@ public class PlayerMovementScript : StateMachine
         {
             if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
             {
-                if (Mathf.Abs(PlayerScript.Direction.x) > 0.9f)
+                if (Mathf.Abs(PlayerScript.Direction.x) > 0.1f)
                 {
                     if (!wantRun)
                     {
@@ -54,19 +54,19 @@ public class PlayerMovementScript : StateMachine
                 }
             }
 
-            else if (PlayerScript.Direction.y < -0.9f)
+            else if (PlayerScript.Direction.y < -0.1f)
             {
-                    // PlayerScript.ChangeState(PlayerState.CROUCH);
+                PlayerScript.SetState(new Crouch(PlayerScript, this));
             }
 
             //for jumping
             else
             {
-                if (PlayerScript.Direction.x < -0.9f) 
+                if (PlayerScript.Direction.x < -0.1f) 
                 {
                     // PlayerScript.ChangeState(PlayerState.BACKJUMP);
                 }
-                else if (PlayerScript.Direction.x > 0.9f) 
+                else if (PlayerScript.Direction.x > 0.1f) 
                 {
                     // PlayerScript.ChangeState(PlayerState.FORWARDJUMP);
                 }

@@ -21,7 +21,7 @@ public class PlayerScript : StateMachine
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Others")]
-    [SerializeField] internal string state;
+    [SerializeField] internal State state;
     [SerializeField] internal Vector2 Direction;
     
     internal Animator Animator;
@@ -42,7 +42,7 @@ public class PlayerScript : StateMachine
         CheckGround();
         FlipSprite();
 
-        state = State.ToString(); // For the Unity Inspector
+        state = State; // For the Unity Inspector
     }
     
     private void GetComponents()

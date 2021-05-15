@@ -16,4 +16,11 @@ public abstract class State
     {
         yield break;
     }
+    public virtual IEnumerator GetName()
+    {
+        var name = this.ToString();
+        yield return name;
+    }
+
+
 }
