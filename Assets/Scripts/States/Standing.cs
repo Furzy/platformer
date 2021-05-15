@@ -10,8 +10,5 @@ public class Standing : State
         PlayerScript.Animator.Play("STANDING");
 
         yield break;
-        // yield return new WaitForSeconds(PlayerScript.AnimationLength);
-
-        // PlayerScript.SetState(new Idle(PlayerScript,PlayerMovementScript));
     }
 }

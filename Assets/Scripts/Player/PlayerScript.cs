@@ -30,22 +30,15 @@ public class PlayerScript : StateMachine
     internal float AnimationNormalizedTime;
 
     // Awake is called before Start
-    private void Awake()
-    {
-        Debug.Log("PlayerScript Awake");
+    private void Awake() => GetComponents();
 
-        GetComponents();
-    }
 
     // Update is called once per frame
     private void Update()
     {
         CheckGround();
         FlipSprite();
-
-        AnimationLength = Animator.GetCurrentAnimatorStateInfo(0).length;
-        AnimationNormalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        state = State; // For the Unity Inspector
+        state = State; // Because State is protected in StateMachine Class
     }
     
     private void GetComponents()
@@ -58,10 +51,7 @@ public class PlayerScript : StateMachine
         Rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void CheckGround()
-    {
-        isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
-    }
+    private void CheckGround() => isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
 
     private void FlipSprite()
     {

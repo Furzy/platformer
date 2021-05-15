@@ -19,11 +19,7 @@ public class PlayerMovementScript : StateMachine
     [SerializeField] internal bool wantRun = false;
 
     // Start is called before the first frame update
-    private void Start()
-    {
-        Debug.Log("PlayerMovementScript Starting");
-        PlayerScript = GetComponent<PlayerScript>();
-    }
+    private void Start() => PlayerScript = GetComponent<PlayerScript>();
 
     private void Update() {
         CheckMovement();

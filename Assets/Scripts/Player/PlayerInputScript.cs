@@ -7,19 +7,11 @@ public class PlayerInputScript : MonoBehaviour
     [SerializeField] internal PlayerScript PlayerScript;
 
     // Start is called before the first frame update
-    private void Start()
-    {
-        Debug.Log("PlayerInputScript Starting");
-
-        PlayerScript = GetComponent<PlayerScript>();
-    }
+    private void Start() => PlayerScript = GetComponent<PlayerScript>();
 
     // Update is called once per frame
-    void Update() => Inputs();
+    private void Update() => Inputs();
 
-    private void Inputs()
-    {
-        PlayerScript.Direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
-    }
-
+    private void Inputs() => PlayerScript.Direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+    
 }
