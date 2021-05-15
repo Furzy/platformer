@@ -14,19 +14,20 @@ public class PlayerScript : StateMachine
     [SerializeField] private PlayerMovementScript PlayerMovementScript;
 
     //For Ground Check
-    internal bool isGrounded;
     [Header("Ground")]
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayer;
+    internal bool isGrounded;
 
-    [Header("Others")]
-    [SerializeField] internal State state;
-    [SerializeField] internal Vector2 Direction;
     
+    internal State state;
+    internal Vector2 Direction;
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
     internal Rigidbody2D Rb2d;
+    internal float AnimationNormalizedTime;
+    internal float AnimationLength;
 
     // Awake is called before Start
     private void Awake()
@@ -42,6 +43,8 @@ public class PlayerScript : StateMachine
         CheckGround();
         FlipSprite();
 
+        AnimationNormalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        AnimationLength = Animator.GetCurrentAnimatorStateInfo(0).length;
         state = State; // For the Unity Inspector
     }
     

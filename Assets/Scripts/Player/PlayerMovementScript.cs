@@ -37,7 +37,7 @@ public class PlayerMovementScript : StateMachine
         {
             if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
             {
-                if (Mathf.Abs(PlayerScript.Direction.x) > 0.1f)
+                if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 {
                     if (!wantRun)
                     {
@@ -54,7 +54,7 @@ public class PlayerMovementScript : StateMachine
                 }
             }
 
-            else if (PlayerScript.Direction.y < -0.1f)
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 PlayerScript.SetState(new Crouch(PlayerScript, this));
             }
