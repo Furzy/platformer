@@ -237,8 +237,6 @@ GameObject:
   - component: {fileID: 1526845534}
   - component: {fileID: 1526845542}
   - component: {fileID: 1526845541}
-  - component: {fileID: 1526845540}
-  - component: {fileID: 1526845536}
   - component: {fileID: 1526845533}
   m_Layer: 10
   m_Name: Player
@@ -259,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09608f0efdbf0414181b7781a436273e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 0}
+  PlayerScript: {fileID: 0}
 --- !u!70 &1526845534
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -297,19 +295,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1526845536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526845532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f046435446ce54231a81e25c9d256bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScript: {fileID: 0}
 --- !u!212 &1526845537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -396,19 +381,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1526845540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526845532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c08739b4f80d4b4799866cb1771d497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScript: {fileID: 0}
 --- !u!114 &1526845541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,10 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f26cc87d31e4dbb914a306bda4f759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 0}
-  groundedMoveSpeed: 2
-  runningMoveSpeed: 5
-  doubleKeySpeed: 0.3
+  PlayerScript: {fileID: 0}
 --- !u!114 &1526845542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,19 +406,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120900c9305f54f1fb69e255b7f012de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInputScript: {fileID: 0}
-  playerMovementScript: {fileID: 0}
-  playerCollisionScript: {fileID: 0}
-  playerAnimationScript: {fileID: 0}
-  isGrounded: 0
   groundCheckPoint: {fileID: 1877883963}
   groundCheckSize: {x: 0.8, y: 0.01}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  currentState: 0
-  newState: 0
-  direction: {x: 0, y: 0}
+  state: 
+  groundedMoveSpeed: 2
+  runningMoveSpeed: 5
+  doubleKeySpeed: 0.3
+  Direction: {x: 0, y: 0}
 --- !u!1 &1666809386
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,9 +9,14 @@ public class PlayerMovementScript : StateMachine
     [SerializeField]
     internal PlayerScript PlayerScript;
 
+    [Header("Movement")]
+    [SerializeField] internal float groundedMoveSpeed = 2;
+    [SerializeField] internal float runningMoveSpeed = 5;
+    [SerializeField] internal float doubleKeySpeed = 0.3f;
+
     internal bool firstKey;
     internal bool doubleKey;
-    internal bool wantRun = false;
+    [SerializeField] internal bool wantRun = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -26,11 +31,6 @@ public class PlayerMovementScript : StateMachine
         CheckRun(KeyCode.RightArrow);
     }
 
-    private void FixedUpdate()
-    {
-        // DoMovement();
-    }
-
     private void CheckMovement()
     {
         if (PlayerScript.isGrounded)
@@ -39,16 +39,18 @@ public class PlayerMovementScript : StateMachine
             {
                 if (Mathf.Abs(PlayerScript.Direction.x) > 0.9f)
                 {
-                    PlayerScript.SetState(new Walk(PlayerScript));
-
-                    if (wantRun) 
+                    if (!wantRun)
                     {
-                        // PlayerScript.ChangeState(PlayerState.RUN);
+                        PlayerScript.SetState(new Walk(PlayerScript, this));   
+                    }
+                    else
+                    {
+                        PlayerScript.SetState(new Run(PlayerScript, this));
                     }
                 }
                 else 
                 {
-                    // PlayerScript.ChangeState(PlayerState.IDLE);
+                    PlayerScript.SetState(new Idle(PlayerScript, this));
                 }
             }
 
@@ -101,26 +103,10 @@ public class PlayerMovementScript : StateMachine
         IEnumerator WaitForSecondKey()
         { 
             firstKey = true; 
-            yield return new WaitForSeconds(PlayerScript.doubleKeySpeed); 
+            yield return new WaitForSeconds(doubleKeySpeed); 
             firstKey = false; 
         }
     }
-
-    // private void DoMovement()
-    // {
-    //     switch (PlayerScript.State)
-    //     {
-    //         case PlayerState.WALK:
-    //             PlayerScript.rb2d.velocity = new Vector2(PlayerScript.direction.x * groundedMoveSpeed, 0f);
-    //             break;
-    //         case PlayerState.RUN:
-    //             PlayerScript.rb2d.velocity = new Vector2(PlayerScript.direction.x * runningMoveSpeed, 0f);
-    //             break;
-    //         default:
-    //             PlayerScript.rb2d.velocity = new Vector2(0f, 0f);
-    //             break;
-    //     }
-    // }
 }
 
 

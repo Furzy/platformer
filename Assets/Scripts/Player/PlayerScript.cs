@@ -12,26 +12,22 @@ public class PlayerScript : StateMachine
     [Header("SubScripts")]
     [SerializeField] private PlayerInputScript PlayerInputScript;
     [SerializeField] private PlayerMovementScript PlayerMovementScript;
-    [SerializeField] private PlayerCollisionScript PlayerCollisionScript;
-    [SerializeField] private PlayerAnimationScript PlayerAnimationScript;
 
     //For Ground Check
-    [Header("Ground")]
     internal bool isGrounded;
+    [Header("Ground")]
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Others")]
+    [SerializeField] internal string state;
+    [SerializeField] internal Vector2 Direction;
+    
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
     internal Rigidbody2D Rb2d;
 
-    [Header("Movement")]
-    [SerializeField] internal float groundedMoveSpeed = 2;
-    [SerializeField] internal float runningMoveSpeed = 5;
-    [SerializeField] internal float doubleKeySpeed = 0.3f;
-    [SerializeField] internal Vector2 Direction;
-    
     // Awake is called before Start
     private void Awake()
     {
@@ -45,14 +41,14 @@ public class PlayerScript : StateMachine
     {
         CheckGround();
         FlipSprite();
+
+        state = State.ToString(); // For the Unity Inspector
     }
     
     private void GetComponents()
     {
         PlayerInputScript = GetComponent<PlayerInputScript>();
         PlayerMovementScript = GetComponent<PlayerMovementScript>();
-        PlayerCollisionScript = GetComponent<PlayerCollisionScript>();
-        PlayerAnimationScript = GetComponent<PlayerAnimationScript>();
 
         Animator = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -81,5 +77,4 @@ public class PlayerScript : StateMachine
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(groundCheckPoint.position, groundCheckSize);
     }
-
 }
