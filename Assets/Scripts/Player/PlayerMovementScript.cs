@@ -14,6 +14,9 @@ public class PlayerMovementScript : StateMachine
     [SerializeField] internal float runningMoveSpeed = 5;
     [SerializeField] internal float doubleKeySpeed = 0.3f;
 
+    [Header("Jumping")]
+    [SerializeField] internal float jumpForce = 2;
+
     internal bool firstKey;
     internal bool doubleKey;
     [SerializeField] internal bool wantRun = false;
@@ -29,8 +32,8 @@ public class PlayerMovementScript : StateMachine
 
     private void CheckMovement()
     {
-        if (PlayerScript.isGrounded)
-        {
+        // if (PlayerScript.isGrounded)
+        // {
             if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f) // Standing
             {
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
@@ -65,24 +68,21 @@ public class PlayerMovementScript : StateMachine
                     PlayerScript.SetState(new Idle(PlayerScript, this));
                 }
             }
-
-            //for jumping
-            else
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (PlayerScript.Direction.x < -0.1f) 
+                if (Mathf.Abs(PlayerScript.Direction.x) < 0.1f)
                 {
-                    // PlayerScript.ChangeState(PlayerState.BACKJUMP);
-                }
-                else if (PlayerScript.Direction.x > 0.1f) 
-                {
-                    // PlayerScript.ChangeState(PlayerState.FORWARDJUMP);
-                }
-                else // neutral jumping
-                {
-                    // PlayerScript.ChangeState(PlayerState.NEUTRALJUMP);
+                    PlayerScript.SetState(new NJump(PlayerScript, this));
                 }
             }
-        }
+        // }
+        // else
+        // {
+            if (Mathf.Abs(PlayerScript.Rb2d.velocity.y) < 0f)
+            {
+                PlayerScript.SetState(new NFall(PlayerScript, this));
+            }
+        // }
     }
 
     private void CheckRun(KeyCode key)

@@ -18,7 +18,7 @@ public class PlayerScript : StateMachine
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayer;
-    internal bool isGrounded;
+    [SerializeField] internal bool isGrounded;
 
     
     internal State state;
