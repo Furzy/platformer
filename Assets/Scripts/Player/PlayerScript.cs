@@ -8,21 +8,25 @@ using UnityEngine;
 
 public class PlayerScript : StateMachine
 {
-    //Store a reference to all sub player scripts
     [Header("SubScripts")]
     [SerializeField] private PlayerInputScript PlayerInputScript;
     [SerializeField] private PlayerMovementScript PlayerMovementScript;
+    [Space]
+    [SerializeField] internal Vector2 Direction;
+    [Space]
 
-    //For Ground Check
     [Header("Ground")]
+    [SerializeField] internal bool isGrounded;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] internal bool isGrounded;
 
+    [Header("Ground")]
+    [SerializeField] string currentState;
+    // [SerializeField] internal bool isRecovered = true;
+    [SerializeField] internal float normalizedTime;
     
     internal State state;
-    internal Vector2 Direction;
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
     internal Rigidbody2D Rb2d;
@@ -32,13 +36,19 @@ public class PlayerScript : StateMachine
     // Awake is called before Start
     private void Awake() => GetComponents();
 
+    private void Start() => new Idle (this, PlayerMovementScript);
+
 
     // Update is called once per frame
     private void Update()
     {
         CheckGround();
         FlipSprite();
+
         state = State; // Because State is protected in StateMachine Class
+        currentState = State.ToString();
+
+        normalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
     
     private void GetComponents()

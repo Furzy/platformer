@@ -9,6 +9,7 @@ public class Idle : State
     {
         PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerScript.Animator.Play("IDLE");
+
         yield break;
     }
 }

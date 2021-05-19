@@ -7,8 +7,8 @@ public class NFall : State
 
     public override IEnumerator Start()
     {
-        PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerMovementScript.jumpForce);
         PlayerScript.Animator.Play("NFALL");
+
         yield break;
     }
 }

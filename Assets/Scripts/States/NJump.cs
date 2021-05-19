@@ -9,6 +9,7 @@ public class NJump : State
     {
         PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerMovementScript.jumpForce);
         PlayerScript.Animator.Play("NJUMP_START");
+
         yield break;
     }
 }

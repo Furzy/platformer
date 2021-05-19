@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementScript : StateMachine
+public class PlayerMovementScript : MonoBehaviour
 {
     //Store a reference to main player script
     [Header("Main Script")]
@@ -10,6 +10,7 @@ public class PlayerMovementScript : StateMachine
     internal PlayerScript PlayerScript;
 
     [Header("Movement")]
+    [SerializeField] internal Vector2 Velocity;
     [SerializeField] internal float groundedMoveSpeed = 2;
     [SerializeField] internal float runningMoveSpeed = 5;
     [SerializeField] internal float doubleKeySpeed = 0.3f;
@@ -25,64 +26,55 @@ public class PlayerMovementScript : StateMachine
     private void Start() => PlayerScript = GetComponent<PlayerScript>();
 
     private void Update() {
-        CheckMovement();
         CheckRun(KeyCode.LeftArrow);
         CheckRun(KeyCode.RightArrow);
+        SetState();
+
+        Velocity = PlayerScript.Rb2d.velocity;
     }
 
-    private void CheckMovement()
+    private void SetState()
     {
-        // if (PlayerScript.isGrounded)
-        // {
-            if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f) // Standing
-            {
-                if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-                {
-                    if (!wantRun)
-                    {
-                        PlayerScript.SetState(new Walk(PlayerScript, this));   
-                    }
-                    else
-                    {
-                        PlayerScript.SetState(new Run(PlayerScript, this));
-                    }
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                PlayerScript.SetState(new Crouch(PlayerScript, this));
-            }
-            
-            if (Mathf.Abs(PlayerScript.Direction.y) < 0.1f && Mathf.Abs(PlayerScript.Direction.x) < 0.1f)
-            {
-                if (Input.GetKeyUp(KeyCode.DownArrow))
-                {
-                    PlayerScript.SetState(new Standing(PlayerScript, this));
-                }
-                else if (PlayerScript.state.ToString() == "Standing" && PlayerScript.AnimationNormalizedTime >= 1f)
-                {
-                    PlayerScript.SetState(new Idle(PlayerScript, this));
-                }
-                else if (PlayerScript.state.ToString() != "Standing")
-                {
-                    PlayerScript.SetState(new Idle(PlayerScript, this));
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (Mathf.Abs(PlayerScript.Direction.x) < 0.1f)
-                {
-                    PlayerScript.SetState(new NJump(PlayerScript, this));
-                }
-            }
-        // }
-        // else
-        // {
-            if (Mathf.Abs(PlayerScript.Rb2d.velocity.y) < 0f)
-            {
-                PlayerScript.SetState(new NFall(PlayerScript, this));
-            }
-        // }
+        // IDLE
+        if (PlayerScript.isGrounded 
+            && Mathf.Abs(PlayerScript.Direction.x) < 0.1f
+            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
+        {
+            PlayerScript.SetState(new Idle(PlayerScript, this));
+        }
+        // WALK
+        else if (PlayerScript.isGrounded 
+            && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
+            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
+            && !wantRun)
+        {
+            PlayerScript.SetState(new Walk(PlayerScript, this));
+        }
+        // RUN
+        else if (PlayerScript.isGrounded 
+            && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
+            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
+            && wantRun)
+        {
+            PlayerScript.SetState(new Run(PlayerScript, this));
+        }
+        // CROUCH_START
+        else if (PlayerScript.isGrounded 
+            && Input.GetKeyDown(KeyCode.DownArrow) 
+            && PlayerScript.state.ToString() != "CrouchStart" 
+            && PlayerScript.Direction.y < -0.9f)
+        {
+            PlayerScript.SetState(new CrouchStart(PlayerScript, this));
+        }
+        // CROUCHING
+        else if (PlayerScript.isGrounded 
+            && Input.GetKey(KeyCode.DownArrow) 
+            && !Input.GetKeyDown(KeyCode.DownArrow)
+            && PlayerScript.state.ToString() == "CrouchStart" 
+            && PlayerScript.Direction.y < -0.9f)
+        {
+            PlayerScript.SetState(new Crouching(PlayerScript, this));
+        }
     }
 
     private void CheckRun(KeyCode key)
