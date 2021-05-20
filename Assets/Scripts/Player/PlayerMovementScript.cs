@@ -60,20 +60,21 @@ public class PlayerMovementScript : MonoBehaviour
         }
         // CROUCH_START
         else if (PlayerScript.isGrounded 
-            && Input.GetKeyDown(KeyCode.DownArrow) 
-            && PlayerScript.state.ToString() != "CrouchStart" 
-            && PlayerScript.Direction.y < -0.9f)
+            && Input.GetKeyDown(KeyCode.DownArrow)
+            && Input.GetKey(KeyCode.DownArrow))
         {
             PlayerScript.SetState(new CrouchStart(PlayerScript, this));
         }
-        // CROUCHING
-        else if (PlayerScript.isGrounded 
-            && Input.GetKey(KeyCode.DownArrow) 
-            && !Input.GetKeyDown(KeyCode.DownArrow)
-            && PlayerScript.state.ToString() == "CrouchStart" 
-            && PlayerScript.Direction.y < -0.9f)
+
+        else if (PlayerScript.isRecovered)
         {
-            PlayerScript.SetState(new Crouching(PlayerScript, this));
+            // CROUCHING
+            if (PlayerScript.isGrounded 
+                && Input.GetKey(KeyCode.DownArrow) 
+                && !Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                PlayerScript.SetState(new Crouching(PlayerScript, this));
+            }
         }
     }
 

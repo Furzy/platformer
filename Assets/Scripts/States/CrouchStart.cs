@@ -8,11 +8,10 @@ public class CrouchStart : State
     {
         PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerScript.Animator.Play("CROUCH_START");
-        yield break;
+        // yield break;
 
-        // yield return new WaitForSeconds(PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).length);
-        // PlayerScript.isRecovered = true;
-        
-        // yield return new Crouching(PlayerScript, PlayerMovementScript);
+        PlayerScript.isRecovered = false;
+        yield return new WaitForSeconds(PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).length);
+        PlayerScript.isRecovered = true;        
     }
 }

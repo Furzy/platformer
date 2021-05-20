@@ -23,7 +23,7 @@ public class PlayerScript : StateMachine
 
     [Header("Ground")]
     [SerializeField] string currentState;
-    // [SerializeField] internal bool isRecovered = true;
+    [SerializeField] internal bool isRecovered = true;
     [SerializeField] internal float normalizedTime;
     
     internal State state;
