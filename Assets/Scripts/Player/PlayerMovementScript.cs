@@ -35,15 +35,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void SetState()
     {
-        // IDLE
-        if (PlayerScript.isGrounded 
-            && Mathf.Abs(PlayerScript.Direction.x) < 0.1f
-            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
-        {
-            PlayerScript.SetState(new Idle(PlayerScript, this));
-        }
         // WALK
-        else if (PlayerScript.isGrounded 
+        if (PlayerScript.isGrounded 
             && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
             && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
             && !wantRun)
@@ -60,16 +53,28 @@ public class PlayerMovementScript : MonoBehaviour
         }
         // CROUCH_START
         else if (PlayerScript.isGrounded 
-            && Input.GetKeyDown(KeyCode.DownArrow)
-            && Input.GetKey(KeyCode.DownArrow))
+            && Input.GetKeyDown(KeyCode.DownArrow))
         {
             PlayerScript.SetState(new CrouchStart(PlayerScript, this));
+        }
+        // STANDING
+        else if (PlayerScript.isGrounded 
+            && Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            PlayerScript.SetState(new Standing(PlayerScript, this));
         }
 
         else if (PlayerScript.isRecovered)
         {
-            // CROUCHING
+            // IDLE
             if (PlayerScript.isGrounded 
+                && Mathf.Abs(PlayerScript.Direction.x) < 0.1f
+                && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
+            {
+                PlayerScript.SetState(new Idle(PlayerScript, this));
+            }
+            // CROUCHING
+            else if (PlayerScript.isGrounded 
                 && Input.GetKey(KeyCode.DownArrow) 
                 && !Input.GetKeyDown(KeyCode.DownArrow))
             {
