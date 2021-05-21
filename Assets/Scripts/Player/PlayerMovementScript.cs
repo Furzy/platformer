@@ -43,13 +43,14 @@ public class PlayerMovementScript : MonoBehaviour
         {
             PlayerScript.SetState(new Walk(PlayerScript, this));
         }
-        // RUN
+        // RUN_START
         else if (PlayerScript.isGrounded 
-            && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
+            && (Input.GetKeyDown(KeyCode.LeftArrow) 
+                || Input.GetKeyDown(KeyCode.RightArrow))
             && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
             && wantRun)
         {
-            PlayerScript.SetState(new Run(PlayerScript, this));
+            PlayerScript.SetState(new RunStart(PlayerScript, this));
         }
         // CROUCH_START
         else if (PlayerScript.isGrounded 
@@ -79,6 +80,15 @@ public class PlayerMovementScript : MonoBehaviour
                 && !Input.GetKeyDown(KeyCode.DownArrow))
             {
                 PlayerScript.SetState(new Crouching(PlayerScript, this));
+            }
+            // RUN
+            else if (PlayerScript.isGrounded 
+            && (Input.GetKeyDown(KeyCode.LeftArrow) 
+                || Input.GetKeyDown(KeyCode.RightArrow))
+            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
+            && PlayerScript.state.ToString() == "RunStart")
+            {
+                PlayerScript.SetState(new Run(PlayerScript, this));
             }
         }
     }

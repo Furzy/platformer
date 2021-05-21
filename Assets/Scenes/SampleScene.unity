@@ -414,12 +414,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerInputScript: {fileID: 0}
   PlayerMovementScript: {fileID: 0}
+  Direction: {x: 0, y: 0}
   isGrounded: 0
   groundCheckPoint: {fileID: 1877883963}
   groundCheckSize: {x: 0.8, y: 0.01}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  currentState: 
+  isRecovered: 1
+  normalizedTime: 0
 --- !u!1 &1666809386
 GameObject:
   m_ObjectHideFlags: 0

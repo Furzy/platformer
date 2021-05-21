@@ -9,6 +9,8 @@ public class Standing : State
         PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerScript.Animator.Play("STANDING");
 
-        yield break;
+        PlayerScript.isRecovered = false;
+        yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
+        PlayerScript.isRecovered = true;        
     }
 }
