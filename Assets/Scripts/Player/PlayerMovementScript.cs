@@ -63,6 +63,18 @@ public class PlayerMovementScript : MonoBehaviour
         {
             PlayerScript.SetState(new Standing(PlayerScript, this));
         }
+        // NFALL
+        else if (!PlayerScript.isGrounded
+            && PlayerScript.Rb2d.velocity.y < -0.1f)
+        {
+            PlayerScript.SetState(new NFall(PlayerScript, this));
+        }
+        // LANDING
+        else if (PlayerScript.isGrounded 
+            && PlayerScript.state.ToString() == "NFall")
+        {
+            PlayerScript.SetState(new Landing(PlayerScript, this));
+        }
 
         else if (PlayerScript.isRecovered)
         {
@@ -72,6 +84,13 @@ public class PlayerMovementScript : MonoBehaviour
                 && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
             {
                 PlayerScript.SetState(new Idle(PlayerScript, this));
+            }
+            // NJUMP_START
+            else if (PlayerScript.isGrounded 
+                && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
+                && Input.GetKey(KeyCode.UpArrow))
+            {
+                PlayerScript.SetState(new NJumpStart(PlayerScript, this));
             }
             // CROUCHING
             else if (PlayerScript.isGrounded 
@@ -87,6 +106,12 @@ public class PlayerMovementScript : MonoBehaviour
                 && wantRun)
             {
                 PlayerScript.SetState(new Run(PlayerScript, this));
+            }
+            // JUMP_STILL
+            else if (!PlayerScript.isGrounded
+                && Mathf.Abs(PlayerScript.Rb2d.velocity.y) < 0.1f)
+            {
+                PlayerScript.SetState(new JumpStill(PlayerScript, this));
             }
         }
     }

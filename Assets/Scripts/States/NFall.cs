@@ -9,6 +9,8 @@ public class NFall : State
     {
         PlayerScript.Animator.Play("NFALL");
 
-        yield break;
+        // PlayerScript.isRecovered = false;
+        yield return new WaitUntil(() => Mathf.Abs(PlayerScript.Rb2d.velocity.y) < 0.1f);
+        // PlayerScript.isRecovered = true;        
     }
 }

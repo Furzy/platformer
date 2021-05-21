@@ -8,7 +8,6 @@ public class JumpStill : State
     public override IEnumerator Start()
     {
         PlayerScript.Animator.Play("JUMP_STILL");
-
         yield break;
     }
 }
