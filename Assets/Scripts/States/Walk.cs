@@ -7,7 +7,7 @@ public class Walk : State
 
     public override IEnumerator Start()
     {
-        PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.Direction.x * PlayerMovementScript.groundedMoveSpeed, 0f);
+        PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.Direction.x * PlayerMovementScript.walkingMoveSpeed, 0f);
         PlayerScript.Animator.Play("WALK");
 
         yield break;

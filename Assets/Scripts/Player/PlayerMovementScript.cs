@@ -11,12 +11,13 @@ public class PlayerMovementScript : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] internal Vector2 Velocity;
-    [SerializeField] internal float groundedMoveSpeed = 2;
+    [SerializeField] internal float walkingMoveSpeed = 2;
     [SerializeField] internal float runningMoveSpeed = 5;
     [SerializeField] internal float doubleKeySpeed = 0.3f;
 
     [Header("Jumping")]
-    [SerializeField] internal float jumpForce = 2;
+    [SerializeField] internal float jumpForce = 4.25f;
+    [SerializeField] internal float runJumpForce = 4.6f;
 
     internal bool firstKey;
     internal bool doubleKey;
@@ -84,6 +85,13 @@ public class PlayerMovementScript : MonoBehaviour
                 && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
             {
                 PlayerScript.SetState(new Idle(PlayerScript, this));
+            }
+            // FJUMP_START
+            else if (PlayerScript.isGrounded 
+                && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+                && Input.GetKey(KeyCode.UpArrow))
+            {
+                PlayerScript.SetState(new FJumpStart(PlayerScript, this));
             }
             // NJUMP_START
             else if (PlayerScript.isGrounded 

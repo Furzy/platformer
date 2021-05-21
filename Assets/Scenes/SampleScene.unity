@@ -395,10 +395,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerScript: {fileID: 0}
   Velocity: {x: 0, y: 0}
-  groundedMoveSpeed: 2
+  walkingMoveSpeed: 2
   runningMoveSpeed: 5
   doubleKeySpeed: 0.3
-  jumpForce: 5
+  jumpForce: 4.25
+  runJumpForce: 4.6
   wantRun: 0
 --- !u!114 &1526845542
 MonoBehaviour:
