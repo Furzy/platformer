@@ -45,9 +45,8 @@ public class PlayerMovementScript : MonoBehaviour
         }
         // RUN_START
         else if (PlayerScript.isGrounded 
-            && (Input.GetKeyDown(KeyCode.LeftArrow) 
-                || Input.GetKeyDown(KeyCode.RightArrow))
-            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
+            && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
             && wantRun)
         {
             PlayerScript.SetState(new RunStart(PlayerScript, this));
@@ -83,10 +82,9 @@ public class PlayerMovementScript : MonoBehaviour
             }
             // RUN
             else if (PlayerScript.isGrounded 
-            && (Input.GetKeyDown(KeyCode.LeftArrow) 
-                || Input.GetKeyDown(KeyCode.RightArrow))
-            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
-            && PlayerScript.state.ToString() == "RunStart")
+                && (!Input.GetKeyDown(KeyCode.LeftArrow) || !Input.GetKeyDown(KeyCode.RightArrow))
+                && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+                && wantRun)
             {
                 PlayerScript.SetState(new Run(PlayerScript, this));
             }

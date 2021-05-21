@@ -97,8 +97,7 @@ AnimatorState:
   m_Name: CROUCH_START
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -6212749327337925491}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -962,8 +961,7 @@ AnimatorState:
   m_Name: STANDING
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 5096263190335428818}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1469,8 +1467,7 @@ AnimatorState:
   m_Name: NFALL
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -4149134032564009583}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
