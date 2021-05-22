@@ -21,7 +21,7 @@ public class PlayerScript : StateMachine
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Ground")]
+    [Header("State")]
     [SerializeField] string currentState;
     [SerializeField] internal bool isRecovered = true;
     [SerializeField] internal float normalizedTime;
@@ -29,6 +29,7 @@ public class PlayerScript : StateMachine
     internal State state;
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
+    internal bool facingRight = true;
     internal Rigidbody2D Rb2d;
     internal float AnimationLength;
     internal float AnimationNormalizedTime;
@@ -68,10 +69,12 @@ public class PlayerScript : StateMachine
         if (Rb2d.velocity.x > 0.1f) 
         {
             SpriteRenderer.flipX = false;
+            facingRight = true;
         }
         else if (Rb2d.velocity.x < -0.1f)
         {
             SpriteRenderer.flipX = true;
+            facingRight = false;
         }
     }
 
