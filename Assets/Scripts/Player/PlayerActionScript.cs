@@ -6,6 +6,7 @@ public class PlayerActionScript : MonoBehaviour {
     //Store a reference to main player script
     [Header("Main Script")]
     [SerializeField] internal PlayerScript PlayerScript;
+    [SerializeField] internal PlayerMovementScript PlayerMovementScript;
 	[SerializeField] float allowedTimeBetweenButtons = 0.3f; //tweak as needed
 
 	private int currentIndex = 0; //moves along the array as buttons are pressed
@@ -13,18 +14,23 @@ public class PlayerActionScript : MonoBehaviour {
 	private bool oldFacing;
     
 
-	private string[] hcf = new string[] {"left","down","right"};
+	[SerializeField] private string[] shoryuken = new string[] {"right","down","right","space"};
 	
 
 	// Use this for initialization
-    private void Start() => PlayerScript = GetComponent<PlayerScript>();
+    private void Start()
+    {
+        PlayerScript = GetComponent<PlayerScript>();
+        PlayerMovementScript = GetComponent<PlayerMovementScript>();
+    }
 	
 	// Update is called once per frame
 	private void Update () 
 	{
-		if(Check(hcf))
+		if(Check(shoryuken))
 		{
-			Debug.Log("HCF");
+			PlayerScript.SetState(new Shoryuken(PlayerScript, PlayerMovementScript));
+            Debug.Log("Shoryuken");
 		}
 	}		
 
@@ -34,12 +40,13 @@ public class PlayerActionScript : MonoBehaviour {
 		{
 			if (currentIndex < buttons.Length) 
 			{	
-                if ((buttons[currentIndex] == "down" && Input.GetAxisRaw("Vertical") == -1 && Input.GetKeyDown(KeyCode.DownArrow))||
-                (buttons[currentIndex] == "up" && Input.GetAxisRaw("Vertical") == -1 && Input.GetKeyDown(KeyCode.UpArrow))||
-                (buttons[currentIndex] == "neutral" && Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0) ||
-                (buttons[currentIndex] == "left" && Input.GetAxisRaw("Horizontal") == -1 && Input.GetKeyDown(KeyCode.LeftArrow))||
-                (buttons[currentIndex] == "right" && Input.GetAxisRaw("Horizontal") == 1 && Input.GetKeyDown(KeyCode.RightArrow))||
-                (buttons[currentIndex] != "down" && buttons[currentIndex] != "up" && buttons[currentIndex] != "neutral" && buttons[currentIndex] != "left" && buttons[currentIndex] != "right" && Input.GetKey(buttons[currentIndex])))
+                if ((buttons[currentIndex] == "down" && Input.GetKeyDown(KeyCode.DownArrow)) ||
+                (buttons[currentIndex] == "up" && Input.GetKeyDown(KeyCode.UpArrow)) ||
+                (buttons[currentIndex] == "neutral" && !Input.anyKey) ||
+                (buttons[currentIndex] == "left" && Input.GetKeyDown(KeyCode.LeftArrow)) ||
+                (buttons[currentIndex] == "right" && Input.GetKeyDown(KeyCode.RightArrow)) ||
+                (buttons[currentIndex] == "space" && Input.GetKeyDown(KeyCode.Space)) ||
+                (buttons[currentIndex] != "down" && buttons[currentIndex] != "up" && buttons[currentIndex] != "neutral" && buttons[currentIndex] != "left" && buttons[currentIndex] != "right" && buttons[currentIndex] != "space" && Input.GetKey(buttons[currentIndex])))
                 {
                     timeLastButtonPressed = Time.time;
                     oldFacing = PlayerScript.facingRight;
