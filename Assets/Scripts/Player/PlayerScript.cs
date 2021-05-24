@@ -13,10 +13,9 @@ public class PlayerScript : StateMachine
     [SerializeField] private PlayerMovementScript PlayerMovementScript;
     [Space]
     [SerializeField] internal Vector2 Direction;
-    [Space]
 
+    [SerializeField] public bool isGrounded { get; private set;}
     [Header("Ground")]
-    [SerializeField] internal bool isGrounded;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayer;
