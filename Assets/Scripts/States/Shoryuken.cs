@@ -10,6 +10,8 @@ public class Shoryuken : State
         PlayerScript.Animator.Play("SHORYUKEN");
 
         PlayerScript.isRecovered = false;
+        yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.37f);
+        PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerMovementScript.jumpForce);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
         PlayerScript.isRecovered = true;        
     }

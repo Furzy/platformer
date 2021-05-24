@@ -24,7 +24,6 @@ public class PlayerScript : StateMachine
     [Header("State")]
     [SerializeField] string currentState;
     [SerializeField] internal bool isRecovered = true;
-    [SerializeField] internal float normalizedTime;
     
     internal State state;
     internal Animator Animator;
@@ -48,8 +47,6 @@ public class PlayerScript : StateMachine
 
         state = State; // Because State is protected in StateMachine Class
         currentState = State.ToString();
-
-        normalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
     
     private void GetComponents()
