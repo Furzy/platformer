@@ -3,21 +3,20 @@ using UnityEngine;
 
 public class FJumpStart : State
 {
-    public FJumpStart(PlayerScript playerScript, PlayerMovementScript playerMovementScript) : base (playerScript, playerMovementScript){}
+    public FJumpStart(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()
     {
-        if (PlayerMovementScript.wantRun)
+        if (PlayerScript.wantRun)
         {
-          PlayerScript.Rb2d.velocity = new Vector2(PlayerMovementScript.runningMoveSpeed * PlayerScript.Direction.x, PlayerMovementScript.runJumpForce);
+          PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.runningMoveSpeed * PlayerScript.Direction.x, PlayerScript.runJumpForce);
         }
         else 
         {
-          PlayerScript.Rb2d.velocity = new Vector2(PlayerMovementScript.walkingMoveSpeed * PlayerScript.Direction.x, PlayerMovementScript.jumpForce);
+          PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.walkingMoveSpeed * PlayerScript.Direction.x, PlayerScript.jumpForce);
         }
         PlayerScript.Animator.Play("FJUMP_START");
 
-        PlayerScript.isRecovered = false;
+        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        // PlayerScript.isRecovered = true;        
     }
 }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Shoryuken : State
 {
-    public Shoryuken(PlayerScript playerScript, PlayerMovementScript playerMovementScript) : base (playerScript, playerMovementScript){}
+    public Shoryuken(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()
     {
         PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerScript.Animator.Play("SHORYUKEN");
 
-        PlayerScript.isRecovered = false;
+        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.37f);
-        PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerMovementScript.jumpForce);
+        PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerScript.jumpForce);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        PlayerScript.isRecovered = true;        
+        PlayerScript.SetRecovery(true, PlayerScript.isRecovered);
     }
 }

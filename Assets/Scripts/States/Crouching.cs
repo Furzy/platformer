@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Crouching : State
 {
-    public Crouching(PlayerScript playerScript, PlayerMovementScript playerMovementScript) : base (playerScript, playerMovementScript){}
+    public Crouching(PlayerScript playerScript) : base (playerScript){}
 
     private IEnumerator OnEnter(){
             PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
             PlayerScript.Animator.Play("CROUCH_START");
 
-            PlayerScript.isRecovered = false;
+            PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
             yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-            PlayerScript.isRecovered = true;  
+            PlayerScript.SetRecovery(true, PlayerScript.isRecovered);
     }
     
     private IEnumerator OnMain(){

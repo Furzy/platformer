@@ -4,12 +4,10 @@ using UnityEngine;
 public abstract class State
 {
     protected PlayerScript PlayerScript;
-    protected PlayerMovementScript PlayerMovementScript;
 
-    public State(PlayerScript playerScript, PlayerMovementScript playerMovementScript)
+    public State(PlayerScript playerScript)
     {
         PlayerScript = playerScript;
-        PlayerMovementScript = playerMovementScript;
     }
 
     public virtual IEnumerator Start()

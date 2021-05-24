@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Idle : State
 {
-    public Idle(PlayerScript playerScript, PlayerMovementScript playerMovementScript) : base (playerScript, playerMovementScript){}
+    public Idle(PlayerScript playerScript) : base (playerScript){}
 
     public override IEnumerator Start()
     {

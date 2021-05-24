@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NFall : State
 {
-    public NFall(PlayerScript playerScript, PlayerMovementScript playerMovementScript) : base (playerScript, playerMovementScript){}
+    public NFall(PlayerScript playerScript) : base (playerScript){}
 
     public override IEnumerator Start()
     {

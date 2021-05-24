@@ -37,38 +37,37 @@ public class PlayerMovementScript : MonoBehaviour
     private void SetState()
     {
         if (WantWalk())
-            PlayerScript.SetState(new Walk(PlayerScript, this));
+            PlayerScript.SetState(new Walk(PlayerScript));
         // RUN_START
         else if (PlayerScript.isGrounded
             && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
             && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
             && wantRun)
         {
-            PlayerScript.SetState(new RunStart(PlayerScript, this));
+            PlayerScript.SetState(new RunStart(PlayerScript));
         }
         // CROUCH
         else if (PlayerScript.isGrounded
             && Input.GetKeyDown(KeyCode.DownArrow))
         {
-            PlayerScript.SetState(new Crouching(PlayerScript, this));
+            PlayerScript.SetState(new Crouching(PlayerScript));
         }
         // STANDING
         else if (PlayerScript.isGrounded
             && Input.GetKeyUp(KeyCode.DownArrow))
         {
-            PlayerScript.SetState(new Standing(PlayerScript, this));
+            PlayerScript.SetState(new Standing(PlayerScript));
         }
         // NFALL
         else if (!PlayerScript.isGrounded
             && PlayerScript.Rb2d.velocity.y < -0.1f)
         {
-            PlayerScript.SetState(new NFall(PlayerScript, this));
+            PlayerScript.SetState(new NFall(PlayerScript));
         }
         // LANDING
-        else if (PlayerScript.isGrounded
-            && PlayerScript.state.ToString() == "NFall")
+        else if (PlayerScript.isGrounded)
         {
-            PlayerScript.SetState(new Landing(PlayerScript, this));
+            PlayerScript.SetState(new Landing(PlayerScript));
         }
 
         else if (PlayerScript.isRecovered)
@@ -78,28 +77,28 @@ public class PlayerMovementScript : MonoBehaviour
                 && Mathf.Abs(PlayerScript.Direction.x) < 0.1f
                 && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
             {
-                PlayerScript.SetState(new Idle(PlayerScript, this));
+                PlayerScript.SetState(new Idle(PlayerScript));
             }
             // FJUMP_START
             else if (PlayerScript.isGrounded
                 && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 && Input.GetKey(KeyCode.UpArrow))
             {
-                PlayerScript.SetState(new FJumpStart(PlayerScript, this));
+                PlayerScript.SetState(new FJumpStart(PlayerScript));
             }
             // NJUMP_START
             else if (PlayerScript.isGrounded
                 && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
                 && Input.GetKey(KeyCode.UpArrow))
             {
-                PlayerScript.SetState(new NJumpStart(PlayerScript, this));
+                PlayerScript.SetState(new NJumpStart(PlayerScript));
             }
             // // CROUCHING
             // else if (PlayerScript.isGrounded
             //     && Input.GetKey(KeyCode.DownArrow)
             //     && !Input.GetKeyDown(KeyCode.DownArrow))
             // {
-            //     PlayerScript.SetState(new Crouching(PlayerScript, this));
+            //     PlayerScript.SetState(new Crouching(PlayerScript));
             // }
             // RUN
             else if (PlayerScript.isGrounded
@@ -107,13 +106,13 @@ public class PlayerMovementScript : MonoBehaviour
                 && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 && wantRun)
             {
-                PlayerScript.SetState(new Run(PlayerScript, this));
+                PlayerScript.SetState(new Run(PlayerScript));
             }
             // JUMP_STILL
             else if (!PlayerScript.isGrounded
                 && Mathf.Abs(PlayerScript.Rb2d.velocity.y) < 0.1f)
             {
-                PlayerScript.SetState(new JumpStill(PlayerScript, this));
+                PlayerScript.SetState(new JumpStill(PlayerScript));
             }
         }
     }

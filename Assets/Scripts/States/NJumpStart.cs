@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class NJumpStart : State
 {
-    public NJumpStart(PlayerScript playerScript, PlayerMovementScript playerMovementScript) : base (playerScript, playerMovementScript){}
+    public NJumpStart(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()
     {
-        PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerMovementScript.jumpForce);
+        PlayerScript.Rb2d.velocity = new Vector2(0f, PlayerScript.jumpForce);
         PlayerScript.Animator.Play("NJUMP_START");
 
-        PlayerScript.isRecovered = false;
+        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        // PlayerScript.isRecovered = true;        
     }
 }

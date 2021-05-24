@@ -8,54 +8,86 @@ using UnityEngine;
 
 public class PlayerScript : StateMachine
 {
-    [Header("SubScripts")]
-    [SerializeField] private PlayerInputScript PlayerInputScript;
-    [SerializeField] private PlayerMovementScript PlayerMovementScript;
-    [Space]
-    [SerializeField] internal Vector2 Direction;
-
-    [SerializeField] public bool isGrounded { get; private set;}
-    [Header("Ground")]
-    [SerializeField] private Transform groundCheckPoint;
-    [SerializeField] private Vector2 groundCheckSize;
-    [SerializeField] private LayerMask groundLayer;
-
     [Header("State")]
-    [SerializeField] string currentState;
-    [SerializeField] internal bool isRecovered = true;
+    [SerializeField] private string _currentState;
+    [SerializeField] private bool _isRecovered;
+    [SerializeField] private bool _isGrounded;
     
-    internal State state;
+    private PlayerMovementScript PlayerMovementScript;
+
+    public Vector2 Direction {get; protected set;}
+    public bool isGrounded {get; protected set;}
+    public bool facingRight {get; protected set;} = true;
+    public bool isRecovered {get; protected set;} = true;
+
+    public bool wantRun {get; protected set;}
+    public float walkingMoveSpeed {get; protected set;}
+    public float runningMoveSpeed {get; protected set;}
+    public float jumpForce {get; protected set;}
+    public float runJumpForce {get; protected set;}
+
+    
+    private Transform groundCheckPoint;
+    private LayerMask groundLayer;
+    private Vector2 groundCheckSize;
+
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
-    internal bool facingRight = true;
     internal Rigidbody2D Rb2d;
     internal float AnimationLength;
     internal float AnimationNormalizedTime;
 
+    
+
     // Awake is called before Start
     private void Awake() => GetComponents();
 
-    private void Start() => new Idle (this, PlayerMovementScript);
-
+    private void Start() => new Idle (this);
 
     // Update is called once per frame
     private void Update()
     {
+        UpdateRefs();
         CheckGround();
+        Inputs();
         FlipSprite();
-
-        state = State; // Because State is protected in StateMachine Class
-        currentState = State.ToString();
+        UpdateInspector();
     }
-    
+
+    private void Inputs()
+    {
+        Direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    }
+
+    private void UpdateRefs()
+    {
+        wantRun = PlayerMovementScript.wantRun;
+        walkingMoveSpeed = PlayerMovementScript.walkingMoveSpeed;
+        runningMoveSpeed = PlayerMovementScript.runningMoveSpeed;
+        jumpForce = PlayerMovementScript.jumpForce;
+        runJumpForce = PlayerMovementScript.runJumpForce;
+    }
+
+    private void UpdateInspector()
+    {
+        _currentState = State.ToString();
+        _isRecovered = isRecovered;
+        _isGrounded = isGrounded;
+    }
+
     private void GetComponents()
     {
-        PlayerInputScript = GetComponent<PlayerInputScript>();
         PlayerMovementScript = GetComponent<PlayerMovementScript>();
 
+        groundCheckPoint = GameObject.Find("GroundCheckPoint").transform;
+        groundLayer = LayerMask.GetMask("Ground");
+        groundCheckSize = new Vector2(0.8f, 0.01f);
+        
         Animator = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         Rb2d = GetComponent<Rigidbody2D>();
+
+
     }
 
     private void CheckGround() => isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
@@ -72,6 +104,12 @@ public class PlayerScript : StateMachine
             SpriteRenderer.flipX = true;
             facingRight = false;
         }
+    }
+
+    public static IEnumerator SetRecovery(bool _bool ,bool isRecovered)
+    {   
+        isRecovered = _bool;
+        yield break;
     }
 
     private void OnDrawGizmosSelected()

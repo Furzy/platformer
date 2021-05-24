@@ -237,7 +237,6 @@ GameObject:
   - component: {fileID: 1526845534}
   - component: {fileID: 1526845542}
   - component: {fileID: 1526845541}
-  - component: {fileID: 1526845533}
   - component: {fileID: 1526845536}
   m_Layer: 10
   m_Name: Player
@@ -246,19 +245,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1526845533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526845532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09608f0efdbf0414181b7781a436273e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerScript: {fileID: 0}
 --- !u!70 &1526845534
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -434,18 +420,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120900c9305f54f1fb69e255b7f012de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInputScript: {fileID: 0}
   PlayerMovementScript: {fileID: 0}
-  Direction: {x: 0, y: 0}
-  isGrounded: 0
   groundCheckPoint: {fileID: 1877883963}
-  groundCheckSize: {x: 0.8, y: 0.01}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  groundCheckSize: {x: 0.8, y: 0.01}
   currentState: 
   isRecovered: 1
-  normalizedTime: 0
 --- !u!1 &1666809386
 GameObject:
   m_ObjectHideFlags: 0
