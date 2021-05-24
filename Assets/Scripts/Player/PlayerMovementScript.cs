@@ -36,30 +36,24 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void SetState()
     {
-        // WALK
-        if (PlayerScript.isGrounded 
-            && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
-            && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
-            && !wantRun)
-        {
+        if (WantWalk())
             PlayerScript.SetState(new Walk(PlayerScript, this));
-        }
         // RUN_START
-        else if (PlayerScript.isGrounded 
+        else if (PlayerScript.isGrounded
             && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
             && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
             && wantRun)
         {
             PlayerScript.SetState(new RunStart(PlayerScript, this));
         }
-        // CROUCH_START
-        else if (PlayerScript.isGrounded 
+        // CROUCH
+        else if (PlayerScript.isGrounded
             && Input.GetKeyDown(KeyCode.DownArrow))
         {
-            PlayerScript.SetState(new CrouchStart(PlayerScript, this));
+            PlayerScript.SetState(new Crouching(PlayerScript, this));
         }
         // STANDING
-        else if (PlayerScript.isGrounded 
+        else if (PlayerScript.isGrounded
             && Input.GetKeyUp(KeyCode.DownArrow))
         {
             PlayerScript.SetState(new Standing(PlayerScript, this));
@@ -71,7 +65,7 @@ public class PlayerMovementScript : MonoBehaviour
             PlayerScript.SetState(new NFall(PlayerScript, this));
         }
         // LANDING
-        else if (PlayerScript.isGrounded 
+        else if (PlayerScript.isGrounded
             && PlayerScript.state.ToString() == "NFall")
         {
             PlayerScript.SetState(new Landing(PlayerScript, this));
@@ -80,35 +74,35 @@ public class PlayerMovementScript : MonoBehaviour
         else if (PlayerScript.isRecovered)
         {
             // IDLE
-            if (PlayerScript.isGrounded 
+            if (PlayerScript.isGrounded
                 && Mathf.Abs(PlayerScript.Direction.x) < 0.1f
                 && Mathf.Abs(PlayerScript.Direction.y) < 0.1f)
             {
                 PlayerScript.SetState(new Idle(PlayerScript, this));
             }
             // FJUMP_START
-            else if (PlayerScript.isGrounded 
+            else if (PlayerScript.isGrounded
                 && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 && Input.GetKey(KeyCode.UpArrow))
             {
                 PlayerScript.SetState(new FJumpStart(PlayerScript, this));
             }
             // NJUMP_START
-            else if (PlayerScript.isGrounded 
+            else if (PlayerScript.isGrounded
                 && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
                 && Input.GetKey(KeyCode.UpArrow))
             {
                 PlayerScript.SetState(new NJumpStart(PlayerScript, this));
             }
-            // CROUCHING
-            else if (PlayerScript.isGrounded 
-                && Input.GetKey(KeyCode.DownArrow) 
-                && !Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                PlayerScript.SetState(new Crouching(PlayerScript, this));
-            }
+            // // CROUCHING
+            // else if (PlayerScript.isGrounded
+            //     && Input.GetKey(KeyCode.DownArrow)
+            //     && !Input.GetKeyDown(KeyCode.DownArrow))
+            // {
+            //     PlayerScript.SetState(new Crouching(PlayerScript, this));
+            // }
             // RUN
-            else if (PlayerScript.isGrounded 
+            else if (PlayerScript.isGrounded
                 && (!Input.GetKeyDown(KeyCode.LeftArrow) || !Input.GetKeyDown(KeyCode.RightArrow))
                 && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                 && wantRun)
@@ -122,6 +116,14 @@ public class PlayerMovementScript : MonoBehaviour
                 PlayerScript.SetState(new JumpStill(PlayerScript, this));
             }
         }
+    }
+
+    private bool WantWalk()
+    {
+        return PlayerScript.isGrounded
+                    && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
+                    && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
+                    && !wantRun;
     }
 
     private void CheckRun(KeyCode key)
