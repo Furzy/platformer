@@ -36,7 +36,7 @@ public class PlayerActionScript : MonoBehaviour {
 
 	private bool Check(string[] buttons)
 	{
-		if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons && (PlayerScript.facingRight == oldFacing || PlayerScript.facingRight == !PlayerScript.facingRight)) currentIndex = 0;
+		if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons && (PlayerScript.isFacingRight == oldFacing || PlayerScript.isFacingRight == !PlayerScript.isFacingRight)) currentIndex = 0;
 		{
 			if (currentIndex < buttons.Length) 
 			{	
@@ -49,7 +49,7 @@ public class PlayerActionScript : MonoBehaviour {
                 (buttons[currentIndex] != "down" && buttons[currentIndex] != "up" && buttons[currentIndex] != "neutral" && buttons[currentIndex] != "left" && buttons[currentIndex] != "right" && buttons[currentIndex] != "space" && Input.GetKey(buttons[currentIndex])))
                 {
                     timeLastButtonPressed = Time.time;
-                    oldFacing = PlayerScript.facingRight;
+                    oldFacing = PlayerScript.isFacingRight;
                     currentIndex++;
                 }
 
