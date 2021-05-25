@@ -9,9 +9,9 @@ public class Standing : State
         PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerScript.Animator.Play("STANDING");
 
-        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(false);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        PlayerScript.SetRecovery(true, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(true);
     }
 
     // TODO: check this duplicate
@@ -19,8 +19,8 @@ public class Standing : State
         PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerScript.Animator.Play("STANDING");
 
-        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(false);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        PlayerScript.SetRecovery(true, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(true);
     }
 }

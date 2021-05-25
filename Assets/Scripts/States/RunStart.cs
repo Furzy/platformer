@@ -9,8 +9,8 @@ public class RunStart : State
         PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.Direction.x * PlayerScript.runningMoveSpeed, 0f);
         PlayerScript.Animator.Play("RUN_START");
         
-        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(false);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        PlayerScript.SetRecovery(true, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(true);
     }
 }

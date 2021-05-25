@@ -9,7 +9,6 @@ public class Walk : State
     {
         PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.Direction.x * PlayerScript.walkingMoveSpeed, 0f);
         PlayerScript.Animator.Play("WALK");
-
         yield break;
     }
 }

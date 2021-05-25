@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //=============================================
@@ -8,25 +7,27 @@ using UnityEngine;
 
 public class PlayerScript : StateMachine
 {
-    private PlayerMovementScript PlayerMovementScript;
 
-    [Header("State")]
-    [SerializeField] private string _currentState;
-    [SerializeField] private bool _isRecovered;
-    [SerializeField] private bool _isGrounded;
-    
-    [Header("Movement")]
-    [SerializeField] private Vector2 _Velocity;
-    [SerializeField] private float _doubleKeySpeed;
-    [SerializeField] private float _walkingMoveSpeed;
-    [SerializeField] private float _runningMoveSpeed;
+    //================================================
+    // Inspector stuff
+    // 
+        [Header("State")]
+        [SerializeField] private string _currentState;
+        [SerializeField] private bool _isRecovered;
+        [SerializeField] private bool _isGrounded;
+        
+        [Header("Movement")]
+        [SerializeField] private Vector2 Velocity;
+        [SerializeField] private float _doubleKeySpeed;
+        [SerializeField] private float _walkingMoveSpeed;
+        [SerializeField] private float _runningMoveSpeed;
 
-    [Header("Jumping")]
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private float _runJumpForce;
+        [Header("Jumping")]
+        [SerializeField] private float _jumpForce;
+        [SerializeField] private float _runJumpForce;
+    //   
+    //================================================
 
-
-    public Vector2 Velocity {get; protected set;}
     public Vector2 Direction {get; protected set;}
 
     public bool isGrounded {get; protected set;} = true;
@@ -47,12 +48,10 @@ public class PlayerScript : StateMachine
     internal SpriteRenderer SpriteRenderer;
     internal Rigidbody2D Rb2d;
 
-    // Awake is called before Start
     private void Awake() => GetComponents();
 
     private void Start() => new Idle (this);
 
-    // Update is called once per frame
     private void Update()
     {
         CheckWorld();
@@ -63,8 +62,6 @@ public class PlayerScript : StateMachine
 
     private void GetComponents()
     {
-        PlayerMovementScript = GetComponent<PlayerMovementScript>();
-
         groundCheckPoint = GameObject.Find("GroundCheckPoint").transform;
         groundLayer = LayerMask.GetMask("Ground");
         groundCheckSize = new Vector2(0.8f, 0.01f);
@@ -104,7 +101,6 @@ public class PlayerScript : StateMachine
         _currentState = State.ToString();
         _isRecovered = isRecovered;
         _isGrounded = isGrounded;
-        _Velocity = Velocity;
         _doubleKeySpeed = doubleKeySpeed;
         _walkingMoveSpeed = walkingMoveSpeed;
         _runningMoveSpeed = runningMoveSpeed;
@@ -112,13 +108,12 @@ public class PlayerScript : StateMachine
         _runJumpForce = runJumpForce;
     }
 
-    public static IEnumerator SetRecovery(bool _bool, bool isRecovered)
+    public void SetRecovery(bool _bool) // Used in states to change recovery
     {   
         isRecovered = _bool;
-        yield break;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected() // To visually represent the GroundCheck on Scene window in Unity
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(groundCheckPoint.position, groundCheckSize);

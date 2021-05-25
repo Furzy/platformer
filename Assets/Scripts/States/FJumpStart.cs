@@ -9,7 +9,7 @@ public class FJumpStart : State
         PlayerScript.Rb2d.velocity = new Vector2(PlayerScript.walkingMoveSpeed * PlayerScript.Direction.x, PlayerScript.jumpForce);
         PlayerScript.Animator.Play("FJUMP_START");
 
-        PlayerScript.SetRecovery(false, PlayerScript.isRecovered);
+        PlayerScript.SetRecovery(false);
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
     }
 }

@@ -6,7 +6,7 @@ public class PlayerActionScript : MonoBehaviour {
     //Store a reference to main player script
     [Header("Main Script")]
     [SerializeField] internal PlayerScript PlayerScript;
-    [SerializeField] internal PlayerMovementScript PlayerMovementScript;
+    [SerializeField] internal PlayerStateSetter PlayerStateSetter;
 	[SerializeField] float allowedTimeBetweenButtons = 0.3f; //tweak as needed
 
 	private int currentIndex = 0; //moves along the array as buttons are pressed
@@ -21,7 +21,7 @@ public class PlayerActionScript : MonoBehaviour {
     private void Start()
     {
         PlayerScript = GetComponent<PlayerScript>();
-        PlayerMovementScript = GetComponent<PlayerMovementScript>();
+        PlayerStateSetter = GetComponent<PlayerStateSetter>();
     }
 	
 	// Update is called once per frame
