@@ -32,7 +32,6 @@ public class PlayerMovementScript : MonoBehaviour
     {
         PlayerMainScript.Rb2d.velocity = new Vector2(0f, 0f);
         PlayerMainScript.Animator.Play("STANDING");
-
     }
 
     private bool WantWalk() => PlayerMainScript.isGrounded
@@ -44,19 +43,18 @@ public class PlayerMovementScript : MonoBehaviour
         PlayerMainScript.Animator.Play("WALK");
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            PlayerMainScript.Rb2d.velocity = new Vector2(0f, 0f);
-            PlayerMainScript.Animator.Play("IDLE");
-        }
+            DoIdle();
     }
 
     private bool WantIdle() => PlayerMainScript.isGrounded
                                     && Mathf.Abs(PlayerMainScript.Direction.x) < 0.1f
                                     && Mathf.Abs(PlayerMainScript.Direction.y) < 0.1f
                                     && !Input.anyKey;
-
-
-
+    private void DoIdle()
+    {
+        PlayerMainScript.Rb2d.velocity = new Vector2(0f, 0f);
+        PlayerMainScript.Animator.Play("IDLE");
+    }
 
     private bool WantNJump() => PlayerMainScript.isGrounded
                                     && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
