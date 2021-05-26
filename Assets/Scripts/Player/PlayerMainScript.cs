@@ -12,8 +12,6 @@ public class PlayerMainScript : MonoBehaviour
     // Inspector stuff
     // 
         [Header("State")]
-        [SerializeField] private string _currentState;
-        [SerializeField] private bool _isRecovered;
         [SerializeField] private bool _isGrounded;
         
         [Header("Movement")]
@@ -32,12 +30,10 @@ public class PlayerMainScript : MonoBehaviour
     //================================================
     // Declarations
     // 
-
     public Vector2 Direction {get; protected set;}
 
     public bool isGrounded {get; protected set;} = true;
     public bool isFacingRight {get; protected set;} = true;
-    public bool isRecovered {get; protected set;} = true;
 
     public float walkingMoveSpeed {get; protected set;} = 2f;
     public float runningMoveSpeed {get; protected set;} = 5f;
@@ -55,18 +51,7 @@ public class PlayerMainScript : MonoBehaviour
     //   
     //================================================
 
-
     private void Awake() => GetComponents();
-
-    // private void Start() => Animator.Play("IDLE");
-
-    private void Update()
-    {
-        CheckWorld();
-        Inputs();
-        FlipSprite();
-        UpdateInspector();
-    }
 
     private void GetComponents()
     {
@@ -79,16 +64,21 @@ public class PlayerMainScript : MonoBehaviour
         Rb2d = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        CheckWorld();
+        Inputs();
+        FlipSprite();
+        UpdateInspector();
+    }
+
     private void CheckWorld()
     {
         Velocity = Rb2d.velocity;
         isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
     } 
 
-    private void Inputs()
-    {
-        Direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    }
+    private void Inputs() => Direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
     private void FlipSprite()
     {
@@ -106,8 +96,6 @@ public class PlayerMainScript : MonoBehaviour
 
     private void UpdateInspector()
     {
-        // _currentState = PlayerInputState.ToString();
-        _isRecovered = isRecovered;
         _isGrounded = isGrounded;
         _doubleKeySpeed = doubleKeySpeed;
         _walkingMoveSpeed = walkingMoveSpeed;
@@ -115,11 +103,6 @@ public class PlayerMainScript : MonoBehaviour
         _jumpForce = jumpForce;
         _runJumpForce = runJumpForce;
         _Direction = Direction;
-    }
-
-    public void SetRecovery(bool _bool) // Used in states to change recovery
-    {   
-        isRecovered = _bool;
     }
 
     private void OnDrawGizmosSelected() // To visually represent the GroundCheck on Scene window in Unity
