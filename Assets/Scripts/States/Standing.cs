@@ -1,18 +1,22 @@
-using System.Collections;
 using UnityEngine;
 
-public class Standing : PlayerInputState
+public class STANDING : StateMachineBehaviour
 {
-    public Standing(PlayerScript playerScript) : base (playerScript){}
-
-    public override IEnumerator Start()
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerScript.SetRecovery(false);
+        animator.Play("STANDING");
+    }
 
-        PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
-        PlayerScript.Animator.Play("STANDING");
-        yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        
-        PlayerScript.SetRecovery(true);
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (stateInfo.IsName("STANDING") && stateInfo.normalizedTime > 1f)
+            animator.Play("IDLE");
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
     }
 }

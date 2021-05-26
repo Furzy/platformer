@@ -236,8 +236,8 @@ GameObject:
   - component: {fileID: 1526845539}
   - component: {fileID: 1526845534}
   - component: {fileID: 1526845542}
-  - component: {fileID: 1526845533}
   - component: {fileID: 1526845536}
+  - component: {fileID: 1526845533}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28de4fe2d8a244f0aac8f135c52ffd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerScript: {fileID: 0}
-  PlayerStateSetter: {fileID: 0}
+  PlayerMainScript: {fileID: 0}
+  PlayerMovementScript: {fileID: 0}
   allowedTimeBetweenButtons: 0.3
   shoryuken:
   - right
@@ -415,6 +415,7 @@ MonoBehaviour:
   _currentState: 
   _isRecovered: 0
   _isGrounded: 0
+  _Direction: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
   _doubleKeySpeed: 0
   _walkingMoveSpeed: 0

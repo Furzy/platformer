@@ -1,28 +1,17 @@
-using System.Collections;
 using UnityEngine;
 
-
-public class Crouch : PlayerInputState
+public class CROUCH : StateMachineBehaviour
 {
-    public Crouch(PlayerScript playerScript) : base (playerScript){}
-
-    public override IEnumerator Start()
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerScript.SetRecovery(false);
+        animator.Play("CROUCH");
+    }
 
-        PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
-        PlayerScript.Animator.Play("CROUCH_START");
-        if (PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).IsName("CROUCH"))
-            yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        else
-            yield return new WaitUntil(() => !Input.GetKey(KeyCode.DownArrow));
-
-        PlayerScript.Rb2d.velocity = new Vector2(0f, 0f);
-        PlayerScript.Animator.Play("CROUCHING");
-        yield return new WaitUntil(() => !Input.GetKey(KeyCode.DownArrow));
-
-        // Debug.Log(PlayerScript.PlayerInputState);
-        // if (PlayerScript.PlayerInputState.ToString() != "Standing")
-        //     PlayerScript.SetPlayerInputState(new Standing(PlayerScript));
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (stateInfo.IsName("CROUCH") && stateInfo.normalizedTime > 1f)
+            animator.Play("CROUCHING");
     }
 }

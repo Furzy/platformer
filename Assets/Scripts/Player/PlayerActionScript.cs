@@ -5,8 +5,8 @@ public class PlayerActionScript : MonoBehaviour {
 
     //Store a reference to main player script
     [Header("Main Script")]
-    [SerializeField] internal PlayerScript PlayerScript;
-    [SerializeField] internal PlayerStateSetter PlayerStateSetter;
+    [SerializeField] internal PlayerMainScript PlayerMainScript;
+    [SerializeField] internal PlayerMovementScript PlayerMovementScript;
 	[SerializeField] float allowedTimeBetweenButtons = 0.3f; //tweak as needed
 
 	private int currentIndex = 0; //moves along the array as buttons are pressed
@@ -20,8 +20,8 @@ public class PlayerActionScript : MonoBehaviour {
 	// Use this for initialization
     private void Start()
     {
-        PlayerScript = GetComponent<PlayerScript>();
-        PlayerStateSetter = GetComponent<PlayerStateSetter>();
+        PlayerMainScript = GetComponent<PlayerMainScript>();
+        PlayerMovementScript = GetComponent<PlayerMovementScript>();
     }
 	
 	// Update is called once per frame
@@ -36,7 +36,7 @@ public class PlayerActionScript : MonoBehaviour {
 
 	private bool Check(string[] buttons)
 	{
-		if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons && (PlayerScript.isFacingRight == oldFacing || PlayerScript.isFacingRight == !PlayerScript.isFacingRight)) currentIndex = 0;
+		if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons && (PlayerMainScript.isFacingRight == oldFacing || PlayerMainScript.isFacingRight == !PlayerMainScript.isFacingRight)) currentIndex = 0;
 		{
 			if (currentIndex < buttons.Length) 
 			{	
@@ -49,7 +49,7 @@ public class PlayerActionScript : MonoBehaviour {
                 (buttons[currentIndex] != "down" && buttons[currentIndex] != "up" && buttons[currentIndex] != "neutral" && buttons[currentIndex] != "left" && buttons[currentIndex] != "right" && buttons[currentIndex] != "space" && Input.GetKey(buttons[currentIndex])))
                 {
                     timeLastButtonPressed = Time.time;
-                    oldFacing = PlayerScript.isFacingRight;
+                    oldFacing = PlayerMainScript.isFacingRight;
                     currentIndex++;
                 }
 

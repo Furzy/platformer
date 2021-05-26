@@ -5,7 +5,7 @@ using UnityEngine;
 // The main player script
 //=============================================
 
-public class PlayerScript : StateMachine
+public class PlayerMainScript : MonoBehaviour
 {
 
     //================================================
@@ -29,6 +29,10 @@ public class PlayerScript : StateMachine
     //   
     //================================================
 
+    //================================================
+    // Declarations
+    // 
+
     public Vector2 Direction {get; protected set;}
 
     public bool isGrounded {get; protected set;} = true;
@@ -48,10 +52,13 @@ public class PlayerScript : StateMachine
     internal Animator Animator;
     internal SpriteRenderer SpriteRenderer;
     internal Rigidbody2D Rb2d;
+    //   
+    //================================================
+
 
     private void Awake() => GetComponents();
 
-    private void Start() => new Idle (this);
+    // private void Start() => Animator.Play("IDLE");
 
     private void Update()
     {
