@@ -99,7 +99,7 @@ public class PlayerScript : StateMachine
 
     private void UpdateInspector()
     {
-        _currentState = PlayerState.ToString();
+        _currentState = PlayerInputState.ToString();
         _isRecovered = isRecovered;
         _isGrounded = isGrounded;
         _doubleKeySpeed = doubleKeySpeed;

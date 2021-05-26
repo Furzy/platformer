@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Run : PlayerState
+public class Run : PlayerInputState
 {
     public Run(PlayerScript playerScript) : base (playerScript){}
 

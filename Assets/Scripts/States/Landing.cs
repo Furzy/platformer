@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Landing : PlayerState
+public class Landing : PlayerInputState
 {
     public Landing(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()

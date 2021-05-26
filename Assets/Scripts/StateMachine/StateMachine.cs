@@ -2,13 +2,11 @@ using UnityEngine;
 
 public abstract class StateMachine : MonoBehaviour
 {
-    protected PlayerState PlayerState;
+    public PlayerInputState PlayerInputState {get; protected set;}
 
-    public void SetPlayerState(PlayerState playerState)
+    public void SetPlayerInputState(PlayerInputState playerState)
     {
-            PlayerState = playerState;
-
-            if(PlayerState.PlayerScript.isRecovered)
-                StartCoroutine(PlayerState.Start());
+            PlayerInputState = playerState;
+            StartCoroutine(PlayerInputState.Start());
     }
 }

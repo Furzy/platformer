@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NFall : PlayerState
+public class NFall : PlayerInputState
 {
     public NFall(PlayerScript playerScript) : base (playerScript){}
 

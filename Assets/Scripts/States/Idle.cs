@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Idle : PlayerState
+public class Idle : PlayerInputState
 {
     public Idle(PlayerScript playerScript) : base (playerScript){}
 

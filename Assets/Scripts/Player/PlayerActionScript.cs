@@ -29,7 +29,7 @@ public class PlayerActionScript : MonoBehaviour {
 	{
 		if(Check(shoryuken))
 		{
-			PlayerScript.SetPlayerState(new Shoryuken(PlayerScript));
+			PlayerScript.SetPlayerInputState(new Shoryuken(PlayerScript));
             Debug.Log("Shoryuken");
 		}
 	}		

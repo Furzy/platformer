@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NJumpStart : PlayerState
+public class NJumpStart : PlayerInputState
 {
     public NJumpStart(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()

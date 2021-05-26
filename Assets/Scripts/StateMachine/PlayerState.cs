@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class PlayerState
+public abstract class PlayerInputState
 {
     public PlayerScript PlayerScript {get; protected set;}
 
-    public PlayerState(PlayerScript playerScript)
+    public PlayerInputState(PlayerScript playerScript)
     {
         PlayerScript = playerScript;
     }

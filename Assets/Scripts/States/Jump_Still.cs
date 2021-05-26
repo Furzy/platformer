@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class JumpStill : PlayerState
+public class JumpStill : PlayerInputState
 {
     public JumpStill(PlayerScript playerScript) : base (playerScript){}
 
