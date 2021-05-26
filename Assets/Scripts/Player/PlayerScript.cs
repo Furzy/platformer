@@ -17,6 +17,7 @@ public class PlayerScript : StateMachine
         [SerializeField] private bool _isGrounded;
         
         [Header("Movement")]
+        [SerializeField] private Vector2 _Direction;
         [SerializeField] private Vector2 Velocity;
         [SerializeField] private float _doubleKeySpeed;
         [SerializeField] private float _walkingMoveSpeed;
@@ -98,7 +99,7 @@ public class PlayerScript : StateMachine
 
     private void UpdateInspector()
     {
-        _currentState = State.ToString();
+        _currentState = PlayerState.ToString();
         _isRecovered = isRecovered;
         _isGrounded = isGrounded;
         _doubleKeySpeed = doubleKeySpeed;
@@ -106,6 +107,7 @@ public class PlayerScript : StateMachine
         _runningMoveSpeed = runningMoveSpeed;
         _jumpForce = jumpForce;
         _runJumpForce = runJumpForce;
+        _Direction = Direction;
     }
 
     public void SetRecovery(bool _bool) // Used in states to change recovery

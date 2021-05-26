@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Crouch : State
+public class Crouch : PlayerState
 {
     public Crouch(PlayerScript playerScript) : base (playerScript){}
 
@@ -21,14 +21,9 @@ public class Crouch : State
     {
         PlayerScript.SetRecovery(false);
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            OnStartup();
-
+        OnStartup();
         yield return new WaitUntil(() => PlayerScript.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f);
-        
-        if (!Input.GetKeyDown(KeyCode.DownArrow) && Input.GetKey(KeyCode.DownArrow))
-            OnActive();      
-             
+        OnActive();      
         PlayerScript.SetRecovery(true);
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Standing : State
+public class Standing : PlayerState
 {
     public Standing(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()

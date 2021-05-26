@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class RunStart : State
+public class RunStart : PlayerState
 {
     public RunStart(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()

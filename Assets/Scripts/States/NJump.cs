@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NJump : State
+public class NJump : PlayerState
 {
     public NJump(PlayerScript playerScript) : base (playerScript){}
 

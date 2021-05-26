@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Shoryuken : State
+public class Shoryuken : PlayerState
 {
     public Shoryuken(PlayerScript playerScript) : base (playerScript){}
     public override IEnumerator Start()

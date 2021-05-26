@@ -10,14 +10,10 @@ public class PlayerStateSetter : MonoBehaviour
 
     private void SetCurrentState()
     {
-        if (PlayerScript.isRecovered)
-        {
-            if (WantIdle())
-                PlayerScript.SetState(new Idle(PlayerScript));
-            else if (WantWalk())
-                PlayerScript.SetState(new Walk(PlayerScript));
+            if (WantWalk())
+                PlayerScript.SetPlayerState(new Walk(PlayerScript));
             else if (WantCrouch())
-                PlayerScript.SetState(new Crouch(PlayerScript));
+                PlayerScript.SetPlayerState(new Crouch(PlayerScript));
             // else if (WantStand())
             //     PlayerScript.SetState(new Standing(PlayerScript));
             // else if (WantNFall())
@@ -28,7 +24,8 @@ public class PlayerStateSetter : MonoBehaviour
             //     PlayerScript.SetState(new NJumpStart(PlayerScript));
             // else if (WantJumpStill())
             //     PlayerScript.SetState(new JumpStill(PlayerScript));
-        }
+            else 
+                PlayerScript.SetPlayerState(new Idle(PlayerScript));
     }
 
     private bool WantIdle() => PlayerScript.isGrounded
@@ -39,8 +36,7 @@ public class PlayerStateSetter : MonoBehaviour
                                     && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
                                     && Mathf.Abs(PlayerScript.Direction.y) < 0.1f;
 
-    private bool WantCrouch() => PlayerScript.isGrounded
-                                    && PlayerScript.Direction.y < 0.9f;
+    private bool WantCrouch() => PlayerScript.isGrounded && PlayerScript.Direction.y < -0.9f;
 
     private bool WantStand() => PlayerScript.isGrounded
                                     && Input.GetKeyUp(KeyCode.DownArrow);

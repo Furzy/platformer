@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Walk : State
+public class Walk : PlayerState
 {
     public Walk(PlayerScript playerScript) : base (playerScript){}
 
