@@ -412,9 +412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120900c9305f54f1fb69e255b7f012de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentState: 
-  _isRecovered: 0
   _isGrounded: 0
+  _isRecovered: 0
   _Direction: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
   _doubleKeySpeed: 0
