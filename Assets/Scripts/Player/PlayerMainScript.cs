@@ -13,6 +13,7 @@ public class PlayerMainScript : MonoBehaviour
     // 
         [Header("State")]
         [SerializeField] private bool _isGrounded;
+        [SerializeField] private bool _isRecovered;
         
         [Header("Movement")]
         [SerializeField] private Vector2 _Direction;
@@ -34,6 +35,7 @@ public class PlayerMainScript : MonoBehaviour
 
     public bool isGrounded {get; protected set;} = true;
     public bool isFacingRight {get; protected set;} = true;
+    public static bool isRecovered {get; protected set;} = true;
 
     public float walkingMoveSpeed {get; protected set;} = 2f;
     public float runningMoveSpeed {get; protected set;} = 5f;
@@ -97,12 +99,18 @@ public class PlayerMainScript : MonoBehaviour
     private void UpdateInspector()
     {
         _isGrounded = isGrounded;
+        _isRecovered = isRecovered;
         _doubleKeySpeed = doubleKeySpeed;
         _walkingMoveSpeed = walkingMoveSpeed;
         _runningMoveSpeed = runningMoveSpeed;
         _jumpForce = jumpForce;
         _runJumpForce = runJumpForce;
         _Direction = Direction;
+    }
+
+    public static void SetRecovery(bool _bool) // Used in states to change recovery
+    {   
+        isRecovered = _bool;
     }
 
     private void OnDrawGizmosSelected() // To visually represent the GroundCheck on Scene window in Unity

@@ -10,12 +10,21 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void SetPlayerMovement()
     {
-        if (WantCrouch()) 
-            DoCrouch();
-        else if (WantStanding())
-            DoStanding();
-        else if (WantWalk())
-            DoWalk();
+        if (PlayerMainScript.isRecovered)
+        {
+            if (WantCrouch()) 
+                DoCrouch();
+            else if (WantStanding())
+                DoStanding();
+            else if (WantWalk())
+                DoWalk();
+            else if (WantNJump())
+                DoNJump();
+            else if (WantJumpStill())
+                DoJumpStill();
+            else if (WantNFall())
+                DoNFall();
+        }
     }
 
     private bool WantCrouch() => PlayerMainScript.isGrounded 
@@ -27,7 +36,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     private bool WantStanding() => PlayerMainScript.isGrounded
-                                    && Input.GetKeyUp(KeyCode.DownArrow);
+                                    && (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.DownArrow));
     private void DoStanding()
     {
         PlayerMainScript.Rb2d.velocity = new Vector2(0f, 0f);
@@ -58,17 +67,28 @@ public class PlayerMovementScript : MonoBehaviour
 
     private bool WantNJump() => PlayerMainScript.isGrounded
                                     && (!Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow))
-                                    && Input.GetKey(KeyCode.UpArrow);
+                                    && Input.GetKeyDown(KeyCode.UpArrow);
+
+    private void DoNJump()
+    {
+        PlayerMainScript.Rb2d.velocity = new Vector2(PlayerMainScript.walkingMoveSpeed * PlayerMainScript.Direction.x, PlayerMainScript.jumpForce);
+        PlayerMainScript.Animator.Play("NJUMP");
+    }
+
+    private bool WantJumpStill() => !PlayerMainScript.isGrounded
+                                    && Mathf.Abs(PlayerMainScript.Rb2d.velocity.y) < 0.1f;
+    private void DoJumpStill() => PlayerMainScript.Animator.Play("JUMP_STILL");
+    
+    private bool WantNFall() => !PlayerMainScript.isGrounded
+                                    && PlayerMainScript.Rb2d.velocity.y < -0.1f;
+    private void DoNFall() => PlayerMainScript.Animator.Play("NFALL");
+
 
     private bool WantFJump() => PlayerMainScript.isGrounded
                                     && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
                                     && Input.GetKey(KeyCode.UpArrow);
 
-    private bool WantJumpStill() => !PlayerMainScript.isGrounded
-                                    && Mathf.Abs(PlayerMainScript.Rb2d.velocity.y) < 0.1f;
 
-    private bool WantNFall() => !PlayerMainScript.isGrounded
-                                    && PlayerMainScript.Rb2d.velocity.y < -0.1f;
 
 }
 
