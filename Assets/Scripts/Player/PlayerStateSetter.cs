@@ -12,12 +12,12 @@ public class PlayerStateSetter : MonoBehaviour
     {
         if (PlayerScript.isRecovered)
         {
-            if (WantIdle())
-                PlayerScript.SetPlayerInputState(new Idle(PlayerScript));
-            else if (WantWalk())
-                PlayerScript.SetPlayerInputState(new Walk(PlayerScript));
-            else if (WantCrouch())
-                PlayerScript.SetPlayerInputState(new Crouch(PlayerScript));
+            // if (WantIdle())
+            //     PlayerScript.SetPlayerInputState(new Idle(PlayerScript));
+            // else if (WantWalk())
+            //     PlayerScript.SetPlayerInputState(new Walk(PlayerScript));
+            if (WantCrouch())
+                PlayerScript.Animator.Play("CROUCH_START");
             // else if (WantNFall())
             //     PlayerScript.SetState(new NFall(PlayerScript));
             // else if (WantFJump())
@@ -27,22 +27,23 @@ public class PlayerStateSetter : MonoBehaviour
             // else if (WantJumpStill())
             //     PlayerScript.SetState(new JumpStill(PlayerScript));
         }
+        if (WantStanding())
+            PlayerScript.Animator.Play("STANDING");
 
-        else if (WantStanding())
-            PlayerScript.SetPlayerInputState(new Standing(PlayerScript));
 
     }
 
     private bool WantIdle() => PlayerScript.isGrounded
                                     && Mathf.Abs(PlayerScript.Direction.x) < 0.1f
-                                    && Mathf.Abs(PlayerScript.Direction.y) < 0.1f;
+                                    && Mathf.Abs(PlayerScript.Direction.y) < 0.1f
+                                    && !Input.anyKey;
 
     private bool WantWalk() => PlayerScript.isGrounded
                                     && Mathf.Abs(PlayerScript.Direction.x) > 0.9f
                                     && Mathf.Abs(PlayerScript.Direction.y) < 0.1f;
 
     private bool WantCrouch() => PlayerScript.isGrounded 
-                                    && PlayerScript.Direction.y < -0.9f;
+                                    && Input.GetKeyDown(KeyCode.DownArrow);
 
     private bool WantStanding() => PlayerScript.isGrounded
                                     && Input.GetKeyUp(KeyCode.DownArrow);

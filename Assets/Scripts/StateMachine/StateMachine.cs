@@ -2,11 +2,15 @@ using UnityEngine;
 
 public abstract class StateMachine : MonoBehaviour
 {
-    public PlayerInputState PlayerInputState {get; protected set;}
+    public StateMachineBehaviour StateMachineBehaviour {get; protected set;}
+    public PlayerScript PlayerScript {get; protected set;}
 
-    public void SetPlayerInputState(PlayerInputState playerState)
+    public void SetPlayerInputState(StateMachineBehaviour stateMachineBehaviour, PlayerScript playerScript)
     {
-            PlayerInputState = playerState;
-            StartCoroutine(PlayerInputState.Start());
+            StateMachineBehaviour = stateMachineBehaviour;
+            PlayerScript = playerScript;
+            PlayerScript.Animator.Play("CROUCH_START");
+            
+            // StartCoroutine(StateMachineBehaviour.Start());
     }
 }

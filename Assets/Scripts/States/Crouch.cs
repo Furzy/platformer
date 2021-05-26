@@ -21,8 +21,8 @@ public class Crouch : PlayerInputState
         PlayerScript.Animator.Play("CROUCHING");
         yield return new WaitUntil(() => !Input.GetKey(KeyCode.DownArrow));
 
-        Debug.Log(PlayerScript.PlayerInputState);
-        if (PlayerScript.PlayerInputState.ToString() != "Standing")
-            PlayerScript.SetPlayerInputState(new Standing(PlayerScript));
+        // Debug.Log(PlayerScript.PlayerInputState);
+        // if (PlayerScript.PlayerInputState.ToString() != "Standing")
+        //     PlayerScript.SetPlayerInputState(new Standing(PlayerScript));
     }
 }

@@ -27,11 +27,11 @@ public class PlayerActionScript : MonoBehaviour {
 	// Update is called once per frame
 	private void Update () 
 	{
-		if(Check(shoryuken))
-		{
-			PlayerScript.SetPlayerInputState(new Shoryuken(PlayerScript));
-            Debug.Log("Shoryuken");
-		}
+		// if(Check(shoryuken))
+		// {
+		// 	PlayerScript.SetPlayerInputState(new Shoryuken(PlayerScript));
+        //     Debug.Log("Shoryuken");
+		// }
 	}		
 
 	private bool Check(string[] buttons)
